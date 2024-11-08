@@ -23,12 +23,12 @@ let scraper = async () => {
                 // Extraer datos específicos
                 const id = competencia.getAttribute('data-id');
                 const texto = competencia.querySelector("text").textContent;
-                const icono = competencia.querySelector("image").getAttribute('href');
+                const icono = competencia.querySelector("image").getAttribute('href').replace('../../web_skill_trees_resources/svg', '');
 
                 return {
                     id,
                     texto,
-                    icono: "https://tinkerway.dev" + icono
+                    icono
                 };
             });
         });
