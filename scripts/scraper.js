@@ -34,7 +34,8 @@ let scraper = async () => {
         });
 
         // Crear carpeta "scripts" si no existe y guardar los datos
-        const filePath = path.join(__dirname, 'competencias.json');
+        const filePath = path.join('../public/data', 'competencias.json');
+        fs.mkdirSync('../public/data',{recursive: true});
         fs.writeFileSync(filePath, JSON.stringify(data, null, 2));
 
         console.log('Datos guardados en competencias.json');
