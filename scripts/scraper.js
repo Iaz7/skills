@@ -23,7 +23,7 @@ let scraper = async () => {
                 // Extraer datos específicos
                 const id = competencia.getAttribute('data-id');
                 const texto = competencia.querySelector("text").textContent;
-                const icono = competencia.querySelector("image").getAttribute('href').replace('../../web_skill_trees_resources/svg', '');
+                const icono = competencia.querySelector("image").getAttribute('href').replace('../../web_skill_trees_resources/svg', '').replace('../../web_skill_trees_resources/', '');
 
                 return {
                     id,
