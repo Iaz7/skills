@@ -22,8 +22,14 @@ let scraper = async () => {
             return Array.from(competencias).map(competencia=> {
                 // Extraer datos específicos
                 const id = competencia.getAttribute('data-id');
-                const texto = competencia.querySelector("text").textContent;
-                const icono = competencia.querySelector("image").getAttribute('href').replace('../../web_skill_trees_resources/svg', '').replace('../../web_skill_trees_resources/', '');
+                let texto = "";
+                for (let i = 0; i < competencia.querySelector("text").children.length; i++) {
+                    texto += competencia.querySelector("text").children[i].textContent + "\n\n\n";
+                }
+                const icono = competencia.querySelector("image").getAttribute('href')
+                                    .replace('../../web_skill_trees_resources/svg', '')
+                                    .replace('../../web_skill_trees_resources/', '')
+                                    .replace('electronics_icons', 'electronics/icons');
 
                 return {
                     id,
