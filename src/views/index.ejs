@@ -13,14 +13,14 @@
             <div class="badge">
                 <svg width="100" height="100" viewBox="0 0 100 100">
                     <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="white" stroke="black" stroke-width="1" />
-                    <text x="50%" y="25%" text-anchor="middle" fill="black" font-size="9">
+                    <text x="50%" y="35%" text-anchor="middle" fill="black" font-size="9">
                         <% 
                         const words = electronics[i].name.split(' ');
                         let line = '';
                         let lines = [];
                         
                         words.forEach(word => {
-                            if ((line + ' ' + word).trim().length <= 15) {
+                            if ((line + ' ' + word).trim().length <= 20) {
                                 line += (line ? ' ' : '') + word;
                             } else {
                                 lines.push(line);
