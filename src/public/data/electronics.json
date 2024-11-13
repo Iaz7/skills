@@ -1,0 +1,478 @@
+[
+    {
+        "id": 1,
+        "name": "Light up an LED for the first time",
+        "description": "Let there be light! Learn how to light up an LED",
+        "difficulty": "Beginner",
+        "icon": "/badges/led.svg"
+    },
+    {
+        "id": 2,
+        "name": "Learn to use wire strippers",
+        "description": "Learn how to use wire strippers for electronics work",
+        "difficulty": "Beginner",
+        "icon": "/badges/wire-strippers.svg"
+    },
+    {
+        "id": 3,
+        "name": "Complete an electronics kit",
+        "description": "Complete a full electronics kit to build a project",
+        "difficulty": "Beginner",
+        "icon": "/badges/electronics-kit.svg"
+    },
+    {
+        "id": 4,
+        "name": "Learn to Solder",
+        "description": "Master the art of soldering components",
+        "difficulty": "Beginner",
+        "icon": "/badges/solder.svg"
+    },
+    {
+        "id": 5,
+        "name": "Learn to use a breadboard",
+        "description": "Get hands-on experience with a breadboard",
+        "difficulty": "Beginner",
+        "icon": "/badges/breadboard.svg"
+    },
+    {
+        "id": 6,
+        "name": "Get a circuit wrong and try again",
+        "description": "Learn through trial and error by troubleshooting circuits",
+        "difficulty": "Beginner",
+        "icon": "/badges/circuit-troubleshoot.svg"
+    },
+    {
+        "id": 7,
+        "name": "Learn Ohm’s Law",
+        "description": "Understand the basics of Ohm’s Law in electronics",
+        "difficulty": "Beginner",
+        "icon": "/badges/ohms-law.svg"
+    },
+    {
+        "id": 8,
+        "name": "Fix something that's broken",
+        "description": "Repair and restore a non-functional device",
+        "difficulty": "Beginner",
+        "icon": "/badges/repair.svg"
+    },
+    {
+        "id": 9,
+        "name": "Measure voltage with a multimeter",
+        "description": "Learn to measure voltage levels accurately",
+        "difficulty": "Beginner",
+        "icon": "/badges/multimeter.svg"
+    },
+    {
+        "id": 10,
+        "name": "Learn to read a schematic",
+        "description": "Develop skills in reading electronic schematics",
+        "difficulty": "Beginner",
+        "icon": "/badges/schematic.svg"
+    },
+    {
+        "id": 11,
+        "name": "Learn to read a datasheet",
+        "description": "Understand how to interpret datasheets for components",
+        "difficulty": "Beginner",
+        "icon": "/badges/datasheet.svg"
+    },
+    {
+        "id": 12,
+        "name": "Control the brightness of an LED",
+        "description": "Learn to adjust LED brightness using electronics",
+        "difficulty": "Beginner",
+        "icon": "/badges/led_2.svg"
+    },
+    {
+        "id": 13,
+        "name": "Desolder a through-hole component",
+        "description": "Learn how to safely remove components from a PCB",
+        "difficulty": "Beginner",
+        "icon": "/badges/solder.svg"
+    },
+    {
+        "id": 14,
+        "name": "Make something that makes noise",
+        "description": "Create a project that outputs sound",
+        "difficulty": "Beginner",
+        "icon": "/badges/noise.svg"
+    },
+    {
+        "id": 15,
+        "name": "Convert a breadboard circuit into a schematic",
+        "description": "Document your breadboard project with a schematic",
+        "difficulty": "Intermediate",
+        "icon": "/badges/schematic.svg"
+    },
+    {
+        "id": 16,
+        "name": "Measure current with a multimeter",
+        "description": "Learn to measure current accurately",
+        "difficulty": "Beginner",
+        "icon": "/badges/multimeter.svg"
+    },
+    {
+        "id": 17,
+        "name": "Make a voltage divider",
+        "description": "Use resistors to create a voltage divider",
+        "difficulty": "Intermediate",
+        "icon": "/badges/voltage-divider.svg"
+    },
+    {
+        "id": 18,
+        "name": "Activate something with a sensor",
+        "description": "Use sensors to control actions in a circuit",
+        "difficulty": "Intermediate",
+        "icon": "/badges/sensor.svg"
+    },
+    {
+        "id": 19,
+        "name": "Protect a circuit with a diode",
+        "description": "Use a diode to prevent reverse voltage damage",
+        "difficulty": "Intermediate",
+        "icon": "/badges/diode.svg"
+    },
+    {
+        "id": 20,
+        "name": "Make a noise-producing oscillator",
+        "description": "Build an oscillator that generates sound",
+        "difficulty": "Intermediate",
+        "icon": "/badges/noise.svg"
+    },
+    {
+        "id": 21,
+        "name": "Use a relay for high-voltage switching",
+        "description": "Control higher voltage devices with a relay",
+        "difficulty": "Intermediate",
+        "icon": "/badges/relay.svg"
+    },
+    {
+        "id": 22,
+        "name": "Create a capacitor rocket",
+        "description": "Experiment with capacitor voltage for fun projects",
+        "difficulty": "Intermediate",
+        "icon": "/badges/capacitor-rocket.svg"
+    },
+    {
+        "id": 23,
+        "name": "Solder surface mount parts",
+        "description": "Learn to solder smaller SMD components",
+        "difficulty": "Intermediate",
+        "icon": "/badges/smd-solder.svg"
+    },
+    {
+        "id": 24,
+        "name": "Use a 555 timer",
+        "description": "Integrate a 555 timer IC into your project",
+        "difficulty": "Intermediate",
+        "icon": "/badges/555-timer.svg"
+    },
+    {
+        "id": 25,
+        "name": "Amplify sound with an amplifier",
+        "description": "Use an amplifier to increase audio volume",
+        "difficulty": "Intermediate",
+        "icon": "/badges/noise.svg"
+    },
+    {
+        "id": 26,
+        "name": "Use addressable RGB LEDs",
+        "description": "Control color-changing RGB LEDs in a project",
+        "difficulty": "Intermediate",
+        "icon": "/badges/led_2.svg"
+    },
+    {
+        "id": 27,
+        "name": "Build a project with a Raspberry Pi",
+        "description": "Utilize a Raspberry Pi in your electronics projects",
+        "difficulty": "Intermediate",
+        "icon": "/badges/raspberry-pi.svg"
+    },
+    {
+        "id": 28,
+        "name": "Accidentally release smoke",
+        "description": "Experience the infamous 'magic smoke' moment",
+        "difficulty": "Intermediate",
+        "icon": "/badges/smoke.svg"
+    },
+    {
+        "id": 29,
+        "name": "Create a circuit diagram in Fritzing or TinkerCAD",
+        "description": "Document circuits with design software",
+        "difficulty": "Intermediate",
+        "icon": "/badges/fritzing.svg"
+    },
+    {
+        "id": 30,
+        "name": "Build a project with Arduino",
+        "description": "Utilize Arduino to build interactive projects",
+        "difficulty": "Intermediate",
+        "icon": "/badges/arduino.svg"
+    },
+    {
+        "id": 31,
+        "name": "Accidentally release smoke from Arduino",
+        "description": "Learn from trial and error with Arduino",
+        "difficulty": "Intermediate",
+        "icon": "/badges/arduino-smoke.svg"
+    },
+    {
+        "id": 32,
+        "name": "Measure frequency with a multimeter",
+        "description": "Use a multimeter to measure frequency",
+        "difficulty": "Intermediate",
+        "icon": "/badges/multimeter.svg"
+    },
+    {
+        "id": 33,
+        "name": "Use an Op-Amp in a circuit",
+        "description": "Experiment with operational amplifiers",
+        "difficulty": "Intermediate",
+        "icon": "/badges/op-amp.svg"
+    },
+    {
+        "id": 34,
+        "name": "Use a crowbar circuit for protection",
+        "description": "Build a crowbar circuit for over-voltage protection",
+        "difficulty": "Advanced",
+        "icon": "/badges/voltage-divider.svg"
+    },
+    {
+        "id": 35,
+        "name": "Use a surge diode",
+        "description": "Protect circuits from voltage spikes with a diode",
+        "difficulty": "Advanced",
+        "icon": "/badges/diode.svg"
+    },
+    {
+        "id": 36,
+        "name": "Make something for a friend",
+        "description": "Share your electronics skills with others",
+        "difficulty": "Beginner",
+        "icon": "/badges/make-for-friend.svg"
+    },
+    {
+        "id": 37,
+        "name": "Make a motor controller with an H Bridge",
+        "description": "Control motor direction and speed with an H Bridge",
+        "difficulty": "Advanced",
+        "icon": "/badges/h-bridge.svg"
+    },
+    {
+        "id": 38,
+        "name": "Make a counter with logic gates",
+        "description": "The number must go up! Create a counter with logic gates",
+        "difficulty": "Advanced",
+        "icon": "/badges/counter.svg"
+    },
+    {
+        "id": 39,
+        "name": "Apply solder paste to a PCB with a stencil",
+        "description": "Use solder paste and a stencil for SMD soldering",
+        "difficulty": "Advanced",
+        "icon": "/badges/stencil.svg"
+    },
+    {
+        "id": 40,
+        "name": "Teach a friend an electronics skill",
+        "description": "Share your electronics knowledge with a friend",
+        "difficulty": "Beginner",
+        "icon": "/badges/teach-others.svg"
+    },
+    {
+        "id": 41,
+        "name": "Make something with a 7-segment display",
+        "description": "Create a project using a 7-segment display",
+        "difficulty": "Intermediate",
+        "icon": "/badges/7-segment.svg"
+    },
+    {
+        "id": 42,
+        "name": "Measure voltage with an oscilloscope",
+        "description": "Learn to measure voltage levels with an oscilloscope",
+        "difficulty": "Advanced",
+        "icon": "/badges/oscilloscope.svg"
+    },
+    {
+        "id": 43,
+        "name": "Measure capacitor equivalent series resistance",
+        "description": "Learn to measure ESR in capacitors",
+        "difficulty": "Advanced",
+        "icon": "/badges/capacitor.svg"
+    },
+    {
+        "id": 44,
+        "name": "Make an Internet of Things (IoT) project",
+        "description": "Create a project that connects to the internet",
+        "difficulty": "Advanced",
+        "icon": "/badges/iot.svg"
+    },
+    {
+        "id": 45,
+        "name": "Make something with solar panels",
+        "description": "Harness the power of the sun for your project",
+        "difficulty": "Advanced",
+        "icon": "/badges/solar-panel.svg"
+    },
+    {
+        "id": 46,
+        "name": "Look at an audio signal with an oscilloscope",
+        "description": "Visualize audio signals with an oscilloscope",
+        "difficulty": "Advanced",
+        "icon": "/badges/audio-oscilloscope.svg"
+    },
+    {
+        "id": 47,
+        "name": "Make a regulated power supply",
+        "description": "Create a stable power supply for your projects",
+        "difficulty": "Advanced",
+        "icon": "/badges/pcb.svg"
+    },
+    {
+        "id": 48,
+        "name": "Use a MOSFET instead of a relay in a project",
+        "description": "Control high-power devices with a MOSFET",
+        "difficulty": "Advanced",
+        "icon": "/badges/mosfet.svg"
+    },
+    {
+        "id": 49,
+        "name": "Make your own USB cable",
+        "description": "Create a custom USB cable for your projects",
+        "difficulty": "Advanced",
+        "icon": "/badges/usb.svg"
+    },
+    {
+        "id": 50,
+        "name": "Use an LED matrix in a project",
+        "description": "Can it play Doom? Use an LED matrix in a project",
+        "difficulty": "Advanced",
+        "icon": "/badges/led-matrix.svg"
+    },
+    {
+        "id": 51,
+        "name": "Filter unwanted noise from a signal",
+        "description": "Remove noise from signals using filters",
+        "difficulty": "Advanced",
+        "icon": "/badges/audio-oscilloscope.svg"
+    },
+    {
+        "id": 52,
+        "name": "Use a frequency analyzer in a project",
+        "description": "Analyze frequency components in a signal",
+        "difficulty": "Advanced",
+        "icon": "/badges/multimeter.svg"
+    },
+    {
+        "id": 53,
+        "name": "Order a PCB with your design",
+        "description": "Create custom PCBs for your projects",
+        "difficulty": "Advanced",
+        "icon": "/badges/pcb.svg"
+    },
+    {
+        "id": 54,
+        "name": "Repair a broken trace on a PCB",
+        "description": "Fix damaged PCB traces to restore functionality",
+        "difficulty": "Advanced",
+        "icon": "/badges/pcb-repair.svg"
+    },
+    {
+        "id": 55,
+        "name": "Use automatic gain control",
+        "description": "Automatically adjust gain in audio circuits",
+        "difficulty": "Advanced",
+        "icon": "/badges/schematic.svg"
+    },
+    {
+        "id": 56,
+        "name": "Make a PID circuit with Op-Amps",
+        "description": "Create a PID controller using operational amplifiers",
+        "difficulty": "Advanced",
+        "icon": "/badges/op-amp.svg"
+    },
+    {
+        "id": 57,
+        "name": "Teach a class on Electronics",
+        "description": "You're the teacher now! Share your electronics knowledge with others",
+        "difficulty": "Advanced",
+        "icon": "/badges/teach-others.svg"
+    },
+    {
+        "id": 58,
+        "name": "Learn PCB design software",
+        "description": "Master software tools for designing custom PCBs",
+        "difficulty": "Advanced",
+        "icon": "/badges/pcb.svg"
+    },
+    {
+        "id": 59,
+        "name": "Use an e-paper display in a project",
+        "description": "Create projects with e-paper displays for low-power applications",
+        "difficulty": "Advanced",
+        "icon": "/badges/e-reader.svg"
+    },
+    {
+        "id": 60,
+        "name": "Build a Radio Frequency (RF) Project",
+        "description": "Create projects that operate in the RF spectrum",
+        "difficulty": "Advanced",
+        "icon": "/badges/rf.svg"
+    },
+    {
+        "id": 61,
+        "name": "Make an open-source project",
+        "description": "Share your project designs with the world",
+        "difficulty": "Advanced",
+        "icon": "/badges/open-source.svg"
+    },
+    {
+        "id": 62,
+        "name": "Use capacitive touch in a PCB design",
+        "description": "Integrate capacitive touch sensors into your PCB designs",
+        "difficulty": "Advanced",
+        "icon": "/badges/capacitive-touch.svg"
+    },
+    {
+        "id": 63,
+        "name": "Make something with PCB Art",
+        "description": "Create artistic designs on PCBs",
+        "difficulty": "Advanced",
+        "icon": "/badges/pcb-art.svg"
+    },
+    {
+        "id": 64,
+        "name": "Make an electronic sculpture",
+        "description": "Who says electronics can't be art? Create an electronic sculpture",
+        "difficulty": "Advanced",
+        "icon": "/badges/sculpture.svg"
+    },
+    {
+        "id": 65,
+        "name": "Make a switch mode power supply",
+        "description": "Create efficient power supplies with switch mode technology",
+        "difficulty": "Advanced",
+        "icon": "/badges/relay.svg"
+    },
+    {
+        "id": 66,
+        "name": "Release a tutorial on a project you've made",
+        "description": "Welcome to the world of electronics tutorials! Share your knowledge with others",
+        "difficulty": "Advanced",
+        "icon": "/badges/upload.svg"
+    },
+    {
+        "id": 67,
+        "name": "Create an FPGA Project",
+        "description": "Design projects using Field-Programmable Gate Arrays",
+        "difficulty": "Advanced",
+        "icon": "/badges/fpga.svg"
+    },
+    {
+        "id": 68,
+        "name": "Write your own C/C++ library for a sensor from scratch",
+        "description": "Develop custom libraries for sensor interfacing",
+        "difficulty": "Advanced",
+        "icon": "/badges/library.svg"
+    }
+]
