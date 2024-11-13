@@ -29,7 +29,7 @@ let getBadges = async () => {
             b4.shift();
 
             const badges = b0.concat(b1,b2,b3,b4);
-            return badges.map((b, i, A )=> {
+            return badges.map((b, i)=> {
                 // Extraer datos específicos
                 const rango = b.querySelector("strong").textContent;
                 const bitpoints_min = b.querySelectorAll("td")[3].textContent;
