@@ -132,3 +132,4 @@ dist
 # IntelliJ IDEA & VSCode
 .idea/
 .vscode/
+node_modules/.package-lock.json
