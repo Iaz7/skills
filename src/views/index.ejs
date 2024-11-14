@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <script src="/js/script.js"></script>
     <title>Web-Skill Tree : Electronics</title>
 </head>
 <body>
@@ -36,8 +37,25 @@
                     </text>
                     <image x="35%" y="60%" width="30" height="30" href="<%= electronics[i].icon %>" />
                 </svg>
+
+                
+                <!-- Edit -->
+                <button class="edit">✏️</button>
+                
+                <!-- Info -->
+                <button class="info">📕</button>
             </div>
         <% } %>
     </div>
+
+    <!-- Description -->
+    <div id="description-banner" class="description">
+        Hover over a badge to see its description.
+    </div>
+
+    <!-- Electronics (for the script) -->
+    <script>
+        window.electronics = <%- JSON.stringify(electronics) %>;
+    </script>
 </body>
 </html>
