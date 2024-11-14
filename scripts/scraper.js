@@ -1,8 +1,15 @@
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const download_icons = require('./download_icons');
+const optimizeSVG = require('./optimize_svg');
 
 const URL = 'https://tinkererway.dev/web_skill_trees/electronics_skill_tree';
+
+async function promptUser(query) {
+    console.log(query);
+    return new Promise(resolve => process.stdin.once('data', data => resolve(data.toString().trim().toLowerCase())));
+}
 
 async function scraper() {
     try {
@@ -45,7 +52,27 @@ async function scraper() {
         await browser.close();
 
         console.log('Data scraped successfully! 🎉');
-        console.log('Run "node download_icons.js" to download the icons');
+
+        const downloadResponse = await promptUser('Do you want to download the icons? (y/n)');
+        if (downloadResponse === 'y') {
+            await download_icons();
+            const optimizeResponse = await promptUser('Do you want to optimize the SVGs? (y/n)');
+            if (optimizeResponse === 'y') {
+                const icons = new Set(data.map(badge => badge.icon));
+                for (const icon of icons) {
+                    const iconPath = path.join(__dirname, 'badges', path.basename(icon));
+                    await optimizeSVG(iconPath);
+                };
+                console.log('SVGs optimized successfully! 🎉');
+            } else {
+                console.log('Optimization skipped!');
+            };
+        } else {
+            console.log('Download skipped!');
+        };
+
+        console.log('Exiting...');
+        process.exit();
     } catch (error) {
         console.error('Error scraping data:', error);
     };
