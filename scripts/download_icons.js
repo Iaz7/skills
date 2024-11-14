@@ -1,17 +1,33 @@
 const fs = require('fs');
 const path = require('path');
-const https = require('https');
+const axios = require('axios');
 
-const url  = 'https://tinkererway.dev/web_skill_trees_resources/svg';
+const URL = 'https://tinkererway.dev/web_skill_trees_resources/svg'
+const BADGES_DATA = require('./data.json');
 
-//Carga los datos de competencias.json en memoria para que se pueda acceder a cada URL y descargar los iconos
-const competenciasPath = '../public/data/competencias.json';
-const competencias = JSON.parse(fs.readFileSync(competenciasPath, 'utf-8'));
+module.exports = async function download_icons() {
+    fs.mkdirSync(path.join(__dirname, 'badges'), { recursive: true });
 
-for (let i = 0; i < competencias.length; i++) {
-    let icono = competencias[i].icono;
-    let urlIcono = url + icono;
-    const destino = path.join('../public/electronics/icons', `icon${i+1}.svg`);
-    fetch(urlIcono).then(res => res.text().then(texto => fs.writeSync(fs.openSync(destino, "w"), texto)));
-}
-console.log("Se han descargado todos los archivos");
+    // Create a set of unique icons (to avoid downloading the same icon multiple times)
+    const icons = new Set(BADGES_DATA.map(badge => badge.icon));
+    console.log(`Found ${icons.size} unique icons!`);
+    for (const icon of icons) {
+        let iconPath = path.join(__dirname, 'badges', icon.split('/').pop());
+        console.log(`Downloading icon: ${icon}`);
+
+        let url = `${URL}${icon.replace('/badges', '/electronics_icons')}`;
+        await axios({
+            url,
+            responseType: 'stream'
+        }).then(response => {
+
+            response.data.pipe(fs.createWriteStream(iconPath));
+        }).catch(err => {
+            console.error(`Error downloading icon: ${badge.id}`, err);
+        });
+
+        console.log(`Icon downloaded: ${iconPath}`);
+    };
+
+    console.log('Icons downloaded successfully! 🎉');
+};
