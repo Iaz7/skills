@@ -87,30 +87,53 @@ h1 {
   fill: white;
   stroke: black;
   stroke-width: 1px;
+  transition: transform 0.3s ease;
+  transform-origin: center;
 }
 
-.selected .hexagon {
-  fill: var(--selected-color, yellow);
+.highlight .hexagon {
+  transform: scale(1.1);
+}
+
+.icon-button {
+  display: none;
+  position: absolute;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.left-button {
+  top: 80%;
+  left: 8px;
+}
+
+.right-button {
+  top: 80%;
+  right: 8px;
+}
+
+.svg-wrapper.highlight .icon-button {
+  display: block;
 }
 
 @media print {
   .color-picker {
     display: none;
   }
-  .custom-svg{
+  .custom-svg {
     display: none;
   }
-  .print-button{
+  .print-button {
     display: none;
   }
 }
 
 /* Footer styles */
 footer {
-
   bottom: 0; /* Stick to the bottom of the viewport */
   width: 100%;
-
   text-align: center;
   background-color: #f0f0f0; /* Light background color */
   border-top: 1px solid #ccc; /* Border on top */
