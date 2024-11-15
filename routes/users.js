@@ -7,5 +7,8 @@ const app = express();
 app.get('/leaderboard', function(req, res) {
   res.sendFile(path.join(__dirname, '/../views/leaderboard.html'));
 });
+app.get('/electronics', function(req, res) {
+  res.sendFile(path.join(__dirname, '/../views/electronics.html'));
+});
 
 module.exports = app;

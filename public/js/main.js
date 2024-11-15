@@ -33,6 +33,18 @@ window.onload = async () => {
         wrapper.addEventListener('mouseout', () => {
             wrapper.classList.remove('highlight');
         });
-    }
 
+        const botonLapiz = wrapper.querySelector(".left-button");
+
+        const botonCuaderno = wrapper.querySelector(".right-button");
+        botonCuaderno.addEventListener("click", () => {
+            const textElement = wrapper.querySelector("text");
+            const textLines = Array.from(textElement.querySelectorAll("tspan")).map(t => t.textContent.trim());
+            const fullText = textLines.join("\n");
+
+            // Guarda el texto en localStorage
+            localStorage.setItem("hexagonText", fullText);
+            window.open('../users/electronics', '_blank');
+        });
+    }
 }
