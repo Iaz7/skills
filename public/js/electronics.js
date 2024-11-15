@@ -20,7 +20,7 @@ window.onload = () => {
             </ul>`;
         contentDiv.innerHTML += `<div id="oculto" hidden>
                 <h4>Provide Evidence</h4>
-                <input type="text" class="text">
+                <input type="text" class="text" value="Enter a URL or explanation as evidence for completing this skill" id="textbox">
                 <button type="button">Submit Evidence</button> 
             </div>` ;
 
@@ -39,4 +39,25 @@ window.onload = () => {
             }
         });
     });
+
+    const a = document.getElementById('textbox');
+    a.onfocus = function (event){
+        let micampo = event.target;
+        if(micampo.value === "Enter a URL or explanation as evidence for completing this skill"){
+            micampo.value = "";
+        }
+    };
+    a.onblur = function (event){
+        let micampo = event.target;
+        if(micampo.value.trim() === ""){
+            micampo.value = "Enter a URL or explanation as evidence for completing this skill";
+        }
+    };
+
+    function restoreText(input) {
+        // Restaura el texto predeterminado si está vacío
+        if (input.value.trim() === "") {
+            input.value = "Escribe algo aquí...";
+        }
+    }
 }
