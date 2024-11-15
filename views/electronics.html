@@ -4,79 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skill Details</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-        #content {
-            max-width: 1200px;
-            margin: auto;
-            background-color: #fff;
-            padding: 30px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            font-size: 1.8em;
-            font-weight: normal;
-            color: #333;
-        }
-        h3 {
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #555;
-            margin-top: 1.2em;
-        }
-        h4 {
-            font-size: 1em;
-            font-weight: bold;
-            color: #666;
-            margin-top: 1.2em;
-        }
-        p {
-            font-size: 1em;
-            color: #333;
-            line-height: 1.6;
-        }
-        ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
-        ul li {
-            padding: 6px 0;
-            font-size: 1em;
-            color: #333;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/elctronics.css">
+    <script src="../js/electronics.js"></script>
 </head>
 <body>
     <div id="content"></div>
-    <script>
-        // Recuperar el texto del hexágono
-        const hexagonText = localStorage.getItem("hexagonText");
-
-        // Mostrarlo en la página
-        if (hexagonText) {
-            const contentDiv = document.getElementById("content");
-            // Unir las líneas del texto en una sola cadena, separadas por un espacio
-            const textLines = hexagonText.split("\n").join(" ");
-            // Insertar el texto en un solo <h1>
-            contentDiv.innerHTML = `<h1>Skill: <span style="font-weight: bold;">${textLines}</span></h1>`;
-            contentDiv.innerHTML += `<h3> Skill score: 1 points </h3>`;
-            contentDiv.innerHTML += `<h3 style="text-align: center"> Description </h3>`;
-            contentDiv.innerHTML += `<p style="text-align: center"> Description of the skill </p>`;
-            contentDiv.innerHTML += `<h4> Task to complete: </h4>`;
-            contentDiv.innerHTML += `<ul>
-                <li><input type="checkbox" class="checkbox"> Uno</li>
-                <li><input type="checkbox" class="checkbox"> Dos</li>
-                <li><input type="checkbox" class="checkbox"> Tres</li>
-            </ul>`;
-            contentDiv.innerHTML += `<h4> Resources </h4>`;
-            contentDiv.innerHTML += `<p> Resources used</p>`
-        }
-
-</script>
 </body>
 </html>
