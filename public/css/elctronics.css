@@ -42,3 +42,17 @@ ul li {
     font-size: 1em;
     color: #333;
 }
+
+button {
+    color: white;
+    background-color: green;
+    text-align: center;
+    font-weight: bold;
+
+}
+
+input {
+    text-align: center;
+}
+
+

@@ -135,7 +135,7 @@ footer {
   bottom: 0; /* Stick to the bottom of the viewport */
   width: 100%;
   text-align: center;
-  background-color: #f0f0f0; /* Light background color */
+  background-color: yellow; /* Light background color */
   border-top: 1px solid #ccc; /* Border on top */
 }
 

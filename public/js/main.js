@@ -23,15 +23,19 @@ window.onload = async () => {
             "</div>";
 
         contenedorCompetencias.innerHTML += wrapperHTML;
+
     }
+    contenedorCompetencias.innerHTML += `<footer id="descripcion" hidden>Descripcion</footer>`;
 
     const svgWrappers = document.getElementsByClassName('svg-wrapper');
     for (let wrapper of svgWrappers) {
         wrapper.addEventListener('mouseover', () => {
             wrapper.classList.add('highlight');
+            document.getElementById('descripcion').removeAttribute('hidden');
         });
         wrapper.addEventListener('mouseout', () => {
             wrapper.classList.remove('highlight');
+            document.getElementById('descripcion').setAttribute('hidden', '');
         });
 
         const botonLapiz = wrapper.querySelector(".left-button");
