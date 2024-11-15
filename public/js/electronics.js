@@ -53,11 +53,4 @@ window.onload = () => {
             micampo.value = "Enter a URL or explanation as evidence for completing this skill";
         }
     };
-
-    function restoreText(input) {
-        // Restaura el texto predeterminado si está vacío
-        if (input.value.trim() === "") {
-            input.value = "Escribe algo aquí...";
-        }
-    }
 }
