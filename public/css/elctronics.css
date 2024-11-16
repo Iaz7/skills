@@ -6,36 +6,32 @@ body {
 }
 
 #content {
-    max-width: 1200px;
-    margin: auto;
+    max-width: 800px;
+    margin: 50px auto;
     background-color: #fff;
-    padding: 30px;
+    padding: 20px 150px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
     font-size: 1.8em;
-    font-weight: normal;
-    color: #333;
+    font-weight: bold;
 }
 
 h3 {
     font-size: 1.2em;
     font-weight: bold;
-    color: #555;
     margin-top: 1.2em;
 }
 
 h4 {
     font-size: 1em;
     font-weight: bold;
-    color: #666;
     margin-top: 1.2em;
 }
 
 p {
     font-size: 1em;
-    color: #333;
     line-height: 1.6;
 }
 
@@ -47,25 +43,44 @@ ul {
 ul li {
     padding: 6px 0;
     font-size: 1em;
-    color: #333;
 }
 
 button {
+    padding: 10px 20px;
+    background-color: rgb(56, 179, 68);
     color: white;
-    background-color: green;
-    place-items: center;
-    text-align: center;
-    font-weight: bold;
-    align-content: center;
-    display: block;
-    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    margin: 10px auto;
 }
 
 #textbox {
-    text-align: center;
-    display: block;
     margin-bottom: 10px;
-    height: 50%;
+    height: 100px;
     width: 100%;
+}
 
+#resources {
+    list-style-position: inside;
+    list-style-type: disc;
+}
+
+/*Para el hexágono*/
+.svg-wrapper {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    position: relative;
+}
+
+.hexagon {
+    fill: white;
+    stroke: black;
+    stroke-width: 1px;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.highlight .hexagon {
+    transform: scale(1.1);
 }

@@ -40,13 +40,12 @@ window.onload = async () => {
         const botonLapiz = wrapper.querySelector(".left-button");
 
         const botonCuaderno = wrapper.querySelector(".right-button");
-        botonCuaderno.addEventListener("click", () => {
-            const textElement = wrapper.querySelector("text");
-            const textLines = Array.from(textElement.querySelectorAll("tspan")).map(t => t.textContent.trim());
-            const fullText = textLines.join("\n");
+        botonCuaderno.addEventListener("click", e => {
+            const skillHTML = e.target.parentElement.getElementsByTagName("svg")[0].outerHTML;
+            const skillName = competencias[parseInt(e.target.parentElement.getAttribute("data-id"))-1].texto;
 
-            // Guarda el texto en localStorage
-            localStorage.setItem("hexagonText", fullText);
+            localStorage.setItem("skill-html", skillHTML);
+            localStorage.setItem("skill-name", skillName);
             window.open('../users/electronics', '_blank');
         });
     }

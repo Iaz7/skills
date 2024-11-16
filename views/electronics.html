@@ -9,7 +9,30 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <div id="content"></div>
-
+    <div id="content">
+        <h1>Skill: </h1>
+        <div class="svg-wrapper" id="container"></div>
+        <h2> Skill score: 1 points </h2>
+        <h2 style="text-align: center"> Description </h2>
+        <p style="text-align: center"> Description of the skill </p>
+        <h2 id="task-title">Tasks to complete:</h2>
+        <ul>
+            <li><input type="checkbox" class="checkbox"> Uno</li>
+            <li><input type="checkbox" class="checkbox"> Dos</li>
+            <li><input type="checkbox" class="checkbox"> Tres</li>
+        </ul>
+        <div id="oculto" hidden>
+            <h2>Provide Evidence</h2>
+            <textarea id="textbox" placeholder="Enter a URL or explanation as evidence for completing this skill"></textarea>
+            <button>Submit Evidence</button>
+        </div>
+        <h2>Resources</h2>
+        <ul id="resources">
+            <li>Resource 1</li>
+            <li>Resource 2</li>
+            <li>Resource 3</li>
+            <li>Resource 4</li>
+        </ul>
+    </div>
 </body>
 </html>
