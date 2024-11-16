@@ -25,7 +25,6 @@ window.onload = async () => {
         contenedorCompetencias.innerHTML += wrapperHTML;
 
     }
-    contenedorCompetencias.innerHTML += `<footer id="descripcion" hidden>Descripcion</footer>`;
 
     const svgWrappers = document.getElementsByClassName('svg-wrapper');
     for (let wrapper of svgWrappers) {

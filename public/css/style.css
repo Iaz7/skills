@@ -1,13 +1,14 @@
 body {
   font-family: Arial, sans-serif;
-  padding: 20px;
   background-color: #f0f0f0;
+  margin: 0;
 }
 
 h1 {
   text-align: center;
   font-size: 2em;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 75px;
 }
 
 .skill-tree {
@@ -26,7 +27,6 @@ h1 {
 .description {
   text-align: center;
   font-size: 1em;
-  margin: 20px 0;
   line-height: 1.5;
 }
 
@@ -72,8 +72,10 @@ h1 {
 .svg-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  margin: 70px auto;
+  gap: 20px;
   justify-content: center;
+  max-width: 600px;
 }
 
 .svg-wrapper {
@@ -130,12 +132,15 @@ h1 {
   }
 }
 
-/* Footer styles */
 footer {
-  bottom: 0; /* Stick to the bottom of the viewport */
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
+  background-color: rgb(235, 215, 110);
+  border-top: 2px solid black;
   text-align: center;
-  background-color: yellow; /* Light background color */
-  border-top: 1px solid #ccc; /* Border on top */
+  padding: 20px;
+  z-index: 1000;
+  font-weight: bold;
 }
-
