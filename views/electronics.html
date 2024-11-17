@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
-    <div id="content">
+    <div class="content">
         <h1>Skill: </h1>
         <div class="svg-wrapper" id="container"></div>
         <h2> Skill score: 1 points </h2>
@@ -24,7 +24,7 @@
         <div id="oculto" hidden>
             <h2>Provide Evidence</h2>
             <textarea id="textbox" placeholder="Enter a URL or explanation as evidence for completing this skill"></textarea>
-            <button>Submit Evidence</button>
+            <button class="button-green" id="submit">Submit Evidence</button>
         </div>
         <h2>Resources</h2>
         <ul id="resources">
@@ -33,6 +33,24 @@
             <li>Resource 3</li>
             <li>Resource 4</li>
         </ul>
+    </div>
+    <div class="content">
+        <h1>Unverified evidence submissions</h1>
+        <table id="submissions-table">
+            <tr>
+                <th>User</th>
+                <th>Evidence</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td>user</td>
+                <td>https://evidence.com</td>
+                <td>
+                    <button class="button-green">Approve</button>
+                    <button class="button-red">Reject</button>
+                </td>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

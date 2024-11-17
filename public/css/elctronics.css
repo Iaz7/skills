@@ -5,7 +5,7 @@ body {
     background-color: #f5f5f5;
 }
 
-#content {
+.content {
     max-width: 800px;
     margin: 50px auto;
     background-color: #fff;
@@ -46,16 +46,42 @@ ul li {
 }
 
 button {
+    border-radius: 4px;
+    margin-right: 20px;
+}
+
+.button-green {
     padding: 10px 20px;
     background-color: rgb(56, 179, 68);
     color: white;
     border: none;
     cursor: pointer;
-    margin: 10px auto;
 }
 
-button.clicked {
-    background-color: darkgreen;
+.button-green:hover  {
+    transition: 0.1s;
+    background-color: #397f39;
+}
+
+.button-green.clicked {
+    background-color: #006000;
+}
+
+.button-red {
+    padding: 10px 20px;
+    background-color: rgb(179, 56, 56);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.button-red:hover  {
+    transition: 0.1s;
+    background-color: #7f3939;
+}
+
+.button-red.clicked {
+    background-color: #600000;
 }
 
 #textbox {
@@ -87,4 +113,35 @@ button.clicked {
 
 .highlight .hexagon {
     transform: scale(1.1);
+}
+
+.hex-circle {
+    stroke-width: 2; /* Ancho del borde */
+}
+
+.hex-circle-red {
+    fill: url(#gradient-red); /* Gradiente rojo */
+    stroke: #d32323; /* Borde rojo sólido */
+}
+
+.svg-wrapper .hex-circle-green {
+    fill: url(#gradient-green); /* Gradiente verde */
+    stroke: #397f39;; /* Borde verde sólido */
+}
+
+/*Para la tabla*/
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+th {
+    background-color: #f7f7f7;
+    font-weight: bold;
+    color: #555;
 }

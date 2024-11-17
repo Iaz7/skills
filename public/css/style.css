@@ -144,3 +144,17 @@ footer {
   z-index: 1000;
   font-weight: bold;
 }
+
+.hex-circle {
+  stroke-width: 2; /* Ancho del borde */
+}
+
+.hex-circle-red {
+  fill: url(#gradient-red); /* Gradiente rojo */
+  stroke: #d32323; /* Borde rojo sólido */
+}
+
+.svg-wrapper .hex-circle-green {
+  fill: url(#gradient-green); /* Gradiente verde */
+  stroke: #397f39;; /* Borde verde sólido */
+}
