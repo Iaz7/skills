@@ -1,5 +1,5 @@
 window.onload = () => {
-    const skillHTML= localStorage.getItem("skill-html");
+    const skillHTML = localStorage.getItem("skill-html");
     const skillName = localStorage.getItem("skill-name");
     document.getElementById("container").innerHTML = skillHTML;
     document.querySelector("h1").innerHTML = "Skill: " + skillName;
@@ -10,23 +10,36 @@ window.onload = () => {
             if (Array.from(checkboxes).every(cb => cb.checked)) {
                 confetti();
                 document.getElementById('oculto').removeAttribute('hidden');
-            }else if (!Array.from(checkboxes).every(cb => cb.checked)){
+            } else if (!Array.from(checkboxes).every(cb => cb.checked)) {
                 document.getElementById('oculto').setAttribute('hidden', '');
             }
         });
     });
 
     const a = document.getElementById('textbox');
-    a.onfocus = function (event){
+    a.onfocus = function (event) {
         let micampo = event.target;
-        if(micampo.value === "Enter a URL or explanation as evidence for completing this skill"){
+        if (micampo.value === "Enter a URL or explanation as evidence for completing this skill") {
             micampo.value = "";
         }
     };
-    a.onblur = function (event){
+    a.onblur = function (event) {
         let micampo = event.target;
-        if(micampo.value.trim() === ""){
+        if (micampo.value.trim() === "") {
             micampo.value = "Enter a URL or explanation as evidence for completing this skill";
         }
     };
+
+    const submitButton = document.querySelector('button');
+    submitButton.addEventListener('click', () => {
+        submitButton.classList.add('clicked');
+        setTimeout(() => {
+            submitButton.classList.remove('clicked');
+        }, 200);
+
+        const textbox = document.getElementById('textbox');
+        if (textbox.value.trim() !== "") {
+            textbox.value = "";
+        }
+    });
 }
