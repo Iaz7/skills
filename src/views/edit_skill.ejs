@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/edit_skill.css">
+    <title>Skill Editor: <%= skill.id %> - SW_2425</title>
+</head>
+
+<body>
+    <h1>Editing Skill: <%= skill.id %></h1>
+    <div class="container">
+        <div class="badge">
+            <svg id="badgeSVG" width="100" height="100" viewBox="0 0 100 100">
+                <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="white" stroke="black" stroke-width="1" />
+                <text id="badgeTXT" x="50%" y="35%" text-anchor="middle" fill="black" font-size="9">
+                    <% 
+                    const words = skill.name.split(' ');
+                    let line = '';
+                    let lines = [];
+                    
+                    words.forEach(word => {
+                        if ((line + ' ' + word).trim().length <= 20) {
+                            line += (line ? ' ' : '') + word;
+                        } else {
+                            lines.push(line);
+                            line = word;
+                        }
+                    });
+                    if (line) lines.push(line);
+
+                    lines.forEach((line, index) => { 
+                    %>
+                        <tspan x="50%" dy="<%= index === 0 ? '0' : '1.2em' %>"><%= line %></tspan>
+                    <% }) %>
+                </text>
+                <image id="badgeIMG" x="35%" y="60%" width="30" height="30" href="<%= skill.icon %>" />
+            </svg>
+        </div>
+        <form action="/skill/update/<%= skill.id %>" method="POST">
+            <div class="form-group">
+                <label for="skillName">Skill Text</label>
+                <input type="text" id="skillName" name="name" value="<%= skill.name %>" placeholder="Skill Name" required>
+            </div>
+
+
+            <div class="form-group">
+                <label for="skillDescription">Skill Description</label>
+                <textarea id="skillDescription" name="description" rows="4" placeholder="Skill Description" required><%= skill.description %></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="taskList">Tasks to Complete</label>
+                <textarea id="taskList" name="tasks" rows="10" placeholder="Enter tasks to complete, one per line." required>
+                    <% skill.tasks.forEach(task => { %>
+                        <%= task %>
+                    <% }); %>
+                </textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="skillResources">Resources</label>
+                <textarea id="skillResources" name="resources" rows="10" placeholder="Enter resources, one per line." required>
+                    <% skill.resources.forEach(resource => { %>
+                        <%= resource.link %> <%= resource.text %>
+                    <% }); %>
+                </textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="skillScore">Skill Score</label>
+                <input type="number" id="skillScore" name="score" value="<%= skill.score %>" min="0" required>
+            </div>
+
+            <div class="form-group">
+                <label for="skillIcon">Skill Icon</label>
+                <input type="file" id="skillIcon" name="icon" accept=".svg" required>
+            </div>
+
+            <div class="form-buttons">
+                <button class="save" type="submit">Save</button>
+                <a href="/skills/<%= skill.id %>"><button class="cancel" type="button">Cancel</button></a>
+                <a href="/skills/delete/<%= skill.id %>"><button class="delete" type="button">Delete</button></a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const updateBadgePreview = () => {
+            const skillName = document.getElementById('skillName').value || '<%= skill.name %>';
+            const skillIconInput = document.getElementById('skillIcon');
+            const badgeText = document.getElementById('badgeTXT');
+            const badgeImage = document.getElementById('badgeIMG');
+
+            const words = skillName.split(' ');
+            let line = '';
+            let lines = [];
+
+            words.forEach(word => {
+                if ((line + ' ' + word).trim().length <= 20) {
+                    line += (line ? ' ' : '') + word;
+                } else {
+                    lines.push(line);
+                    line = word;
+                }
+            });
+            if (line) lines.push(line);
+
+            badgeText.innerHTML = '';
+            lines.forEach((line, index) => {
+                const tspan = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+                tspan.setAttribute('x', '50%');
+                tspan.setAttribute('dy', index === 0 ? '0' : '1.2em');
+                tspan.textContent = line;
+                badgeText.appendChild(tspan);
+            });
+
+            const file = skillIconInput.files[0];
+            if (file && file.type === 'image/svg+xml') {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    badgeImage.setAttribute('href', event.target.result);
+                };
+                reader.readAsDataURL(file);
+                console.log(file);
+            } else {
+                if (skillIconInput.files.length) {
+                    alert('Please select a valid SVG file.');
+                } else {
+                    badgeImage.setAttribute('href', '<%= skill.icon %>');
+                };
+            };
+        };
+
+        document.getElementById('skillName').addEventListener('input', updateBadgePreview);
+        document.getElementById('skillIcon').addEventListener('input', updateBadgePreview);
+
+        updateBadgePreview();
+    </script>
+</body>
+
+</html>
