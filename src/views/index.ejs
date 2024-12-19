@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/index.css">
     <script src="/js/script.js"></script>
-    <title>Web-Skill Tree : Electronics</title>
+    <title>Home - SW_2425</title>
 </head>
 <body>
     <h1>ELECTRONICS</h1>
@@ -40,10 +40,10 @@
 
                 
                 <!-- Edit -->
-                <button class="edit">✏️</button>
+                <button class="edit"><a href="/skills/edit/<%= electronics[i].id %>">✏️</a></button>
                 
                 <!-- Info -->
-                <button class="info">📕</button>
+                <button class="info"><a href="/skills/<%= electronics[i].id %>">📕</a></button>
             </div>
         <% } %>
     </div>

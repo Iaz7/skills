@@ -66,12 +66,12 @@ button {
     position: absolute;
     bottom: 5px;
     padding: 5px 10px;
-    background-color: #333;
-    color: white;
+    background-color: transparent;
     border: none;
     border-radius: 3px;
     cursor: pointer;
     font-size: 12px;
+    text-shadow: 1px 1px 5px black;
 }
 
 button.edit {
