@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+    background-color: #101010;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.code {
+    font-size: 100px;
+    font-weight: 900;
+    position: relative;
+    animation: shake-animation 1s infinite linear alternate-reverse;
+}
+
+.err_title {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 20px 0;
+}
+
+.err_desc {
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.err_title,
+.err_desc {
+    animation: glitch-text 1s infinite linear alternate-reverse;
+}
+
+.home_btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 500;
+    transition: 0.3s background-color;
+}
+
+.home_btn:hover {
+    background-color: #0056b3;
+    transition: 0.3s background-color;
+}
+
+.route {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 12px;
+    margin-top: 20px;
+    font-weight: 300;
+}
+
+/* Dumb stuff */
+@keyframes shake-animation {
+    0% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    10% {
+        transform: translate(-0.5px, -0.5px);
+        opacity: 0.95;
+    }
+
+    20% {
+        transform: translate(0.5px, 0.5px);
+        opacity: 0.9;
+    }
+
+    30% {
+        transform: translate(-0.5px, 0);
+        opacity: 0.85;
+    }
+
+    40% {
+        transform: translate(0.5px, -0.5px);
+        opacity: 0.95;
+    }
+
+    50% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    60% {
+        transform: translate(-0.5px, 0);
+        opacity: 0.9;
+    }
+
+    70% {
+        transform: translate(0.5px, 0.5px);
+        opacity: 0.85;
+    }
+
+    80% {
+        transform: translate(-0.5px, 0.5px);
+        opacity: 0.9;
+    }
+
+    90% {
+        transform: translate(0.5px, -0.5px);
+        opacity: 0.85;
+    }
+}
+
+@keyframes glitch-text {
+    0% {
+        text-shadow: 1px 1px 3px rgba(0, 255, 255, 0.4), -1px -1px 3px rgba(255, 0, 255, 0.4);
+    }
+
+    20% {
+        text-shadow: -1px -1px 3px rgba(0, 255, 255, 0.4), 1px 1px 3px rgba(255, 0, 255, 0.4);
+    }
+
+    40% {
+        text-shadow: 2px 2px 4px rgba(0, 255, 255, 0.5), -2px -2px 4px rgba(255, 0, 255, 0.5);
+    }
+
+    60% {
+        text-shadow: -2px -2px 4px rgba(0, 255, 255, 0.5), 2px 2px 4px rgba(255, 0, 255, 0.5);
+    }
+
+    80% {
+        text-shadow: 1px 1px 3px rgba(0, 255, 255, 0.5), -1px -1px 3px rgba(255, 0, 255, 0.5);
+    }
+}
