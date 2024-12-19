@@ -19,8 +19,12 @@
   "homepage": "https://github.com/Bartolumiu/skills#readme",
   "dependencies": {
     "axios": "^1.7.7",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.7",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "mongoose": "^8.9.2",
     "puppeteer": "^23.8.0",
     "svgo": "^3.3.2"
   }
