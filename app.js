@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const connectDB = require('./scripts/config/database');
+const session = require('express-session');
 
 
 var indexRouter = require('./routes/index');
@@ -40,5 +41,14 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.use(
+    session({
+      secret: 'tu-secreto',
+      resave: false,
+      saveUninitialized: true,
+      cookie: { secure: false },
+    })
+);
 
 module.exports = app;

@@ -8,7 +8,10 @@ const userSchema = new mongoose.Schema({
     password:{
       type: String,
       minLength: 6
-    }
+    },
+    score: Number,
+    admin: Boolean,
+    completedSkills: Array
 });
 
 module.exports = mongoose.model('User', userSchema);
