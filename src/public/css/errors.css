@@ -48,10 +48,9 @@ body {
     animation: glitch-text 1s infinite linear alternate-reverse;
 }
 
-.home_btn {
+.btn {
     margin-top: 20px;
     padding: 10px 20px;
-    background-color: #007bff;
     color: #fff;
     text-decoration: none;
     border-radius: 5px;
@@ -60,9 +59,20 @@ body {
     transition: 0.3s background-color;
 }
 
-.home_btn:hover {
+.btn_primary {
+    background-color: #007bff;
+}
+
+.btn_primary:hover {
     background-color: #0056b3;
-    transition: 0.3s background-color;
+}
+
+.btn_secondary {
+    background-color: #6c757d;
+}
+
+.btn_secondary:hover {
+    background-color: #545b62;
 }
 
 .route {
