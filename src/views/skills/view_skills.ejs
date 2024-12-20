@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/skills.css">
+    <script src="/js/badges.js"></script>
+    <title><%= skillTree %> - Skill Tree</title>
+</head>
+<body>
+    <h1><%= skillTree %> Skill Tree</h1>
+
+    <div class="badge-container">
+        <% skills.forEach(skill => { %>
+            <div class="badge">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                    <polygon points="50,0 100,25 100,75 50,100 0,75 0,25" fill="white" stroke="black" stroke-width="1" />
+                    <text x="50%" y="35%" text-anchor="middle" fill="black" font-size="9">
+                        <%
+                        const words = skill.name.split(' ');
+                        let line = '';
+                        let lines = [];
+
+                        words.forEach(word => {
+                            if ((line + ' ' + word).trin().length <= 20) {
+                                line += (line ? ' ' : '') + word;
+                            } else {
+                                lines.push(line);
+                                line = word;
+                            }
+                        });
+                        if (line) lines.push(line);
+
+                        lines.forEach((line, index) => {
+                            %>
+                            <tspan x="50%" dy="<%= index === 0 ? '0' : '1.2em' %>"><%= line %></tspan>
+                        <% }) %>
+                    </text>
+                    <image x="35%" y="60%" width="30" height="30" href="<%= skill.icon %>" />
+                </svg>
+
+                <!-- Edit -->
+                <button class="edit"><a href="/skills/<%= skillTree %>/edit/<%= skill._id %>">✏️</a></button>
+
+                <!-- Info -->
+                <button class="info"><a href="/skills/<%= skillTree %>/<%= skill._id %>">📕</a></button>
+            </div>
+        <% }) %>
+    </div>
+
+    <!-- Description -->
+    <div id="description-banner" class="description">
+        Hover over a badge to see its description.
+    </div>
+
+    <!-- Skills Data (for script handling) -->
+    <script>
+        window.skills = <%- JSON.stringify(skills) %>;
+    </script>
+</body>
+</html>
