@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/auth.css">
+    <title>Auth - SW_2425</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>Login</h1>
+            <form action="/users/login" method="POST">
+                <div class="form-control">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" required>
+                </div>
+    
+                <div class="form-control">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" required>
+                </div>
+
+                <button class="btn" type="submit">Login</button>
+            </form>
+            <p>Don't have an account? <a href="/users/register">Register now</a></p>
+        </div>
+    </div>
+</body>
+</html>
