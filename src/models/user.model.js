@@ -7,7 +7,6 @@ const userSchema = new Schema({
     admin: { type: Boolean, default: false },
     completedSkills: [{ ref: 'Skill', type: Schema.Types.ObjectId }]
 }, {
-    _id: false,
     timestamps: true,
     versionKey: false
 });
