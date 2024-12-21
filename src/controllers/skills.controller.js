@@ -5,10 +5,14 @@ const UserSkill = require('../models/userskill.model');
 const viewSkills = async (req, res) => {
     // Get the skill tree from the URL route (e.g. /skills/electronics)
     const { skillTree } = req.params;
-    console.log(skillTree);
     try {
         const skills = await Skill.find({ set: skillTree }).sort({ id: 1 });
-        res.render('skills/view_skills', { skills, skillTree });
+        if (skills.length === 0) return res.status(404).render('errors/404', {
+            title: 'Skill tree not found',
+            message: 'The skill tree you are looking for does not exist.',
+            route: `/skills/${skillTree}`
+        });
+        res.render('skills/list', { skills, skillTree });
     } catch (err) {
         res.status(500).render('500', { error: 'Failed to fetch skills' });
     }
@@ -22,9 +26,9 @@ const viewSkill = async (req, res) => {
         if (!skill) return res.status(404).render('errors/404', {
             title: 'Skill not found',
             message: 'The skill you are looking for does not exist.',
-            route: `/skills/${skillTree}`
+            route: `/skills/${skillTree}/view/${skillID}`
         });
-        res.render('skills/view_skill', { skill });
+        res.render('skills/view', { skill });
     } catch (err) {
         res.status(500).render('500', { error: 'Failed to fetch skill' });
     };
@@ -56,7 +60,7 @@ const submitEvidence = async (req, res) => {
 // New skill form (admin only)
 const addSkillForm = (req, res) => {
     const { skillTree } = req.params;
-    res.render('skills/add_skill', { skillTree });
+    res.render('skills/add', { skillTree });
 };
 
 // New skill (admin only)
@@ -93,7 +97,7 @@ const editSkillForm = async (req, res) => {
         message: 'The skill you are looking for does not exist.',
         route: `/skills/${skillTree}`
     });
-    res.render('skills/edit_skill', { skill, skillTree });
+    res.render('skills/edit', { skill, skillTree });
 };
 
 // Edit skill (admin only)
