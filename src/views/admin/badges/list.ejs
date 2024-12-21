@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin/badges/list.css">
+    <title>Manage Badges @ Admin Dashboard - SW_2425</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Manage Badges</h1>
+        <a href="/admin/dashboard">Back to Dashboard</a>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Name</th>
+                    <th>Range</th>
+                    <th>Min Points</th>
+                    <th>Max Points</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% badges.forEach(badge => { %>
+                <tr>
+                    <td>
+                        <img src="<%= badge.image_url %>" alt="<%= badge.name %> Badge" width="50">
+                    </td>
+                    <td><%= badge.name %></td>
+                    <td><%= badge.bitpoints_min %> - <%= badge.bitpoints_max %></td>
+                    <td><%= badge.bitpoints_min %></td>
+                    <td><%= badge.bitpoints_max %></td>
+                    <td>
+                        <a href="/admin/badges/edit/<%= badge._id %>"><button class="btn btn_primary" type="button">Edit</button></a>
+                        <form method="POST" action="/admin/badges/delete/<%= badge._id %>" style="display: inline;">
+                            <button class="btn btn_danger" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

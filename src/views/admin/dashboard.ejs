@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global/reset.css">
+    <link rel="stylesheet" href="/css/admin/dashboard.css">
+    <title>Admin Dashboard - SW_2425</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <div class="card">
+            <h2>Welcome, <%= user.username %>!</h2>
+            <p>What would you like to do today?</p>
+            <ul>
+                <li><a class="badges" href="/admin/badges"><button>Manage Badges</button></a></li>
+                <li><a class="users" href="/admin/users"><button>Manage Users</button></a></li>
+                <li><a class="logout" href="/users/logout"><button>Logout</button></a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
