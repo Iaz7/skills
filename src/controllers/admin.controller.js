@@ -3,13 +3,13 @@ const User = require('../models/user.model');
 
 // Dashboard
 const dashboard = (req, res) => {
-    res.render('admin/dashboard');
+    res.render('admin/dashboard', { user: req.session.user });
 };
 
 // View all badges
 const viewBadges = async (req, res) => {
     const badges = await Badge.find();
-    res.render('admin/badges', { badges });
+    res.render('admin/badges/list', { user: req.session.user, badges });
 };
 
 // Edit badge form
@@ -22,7 +22,7 @@ const editBadgeForm = async (req, res) => {
             route: `/admin/badge/edit/${req.params.id}`
         });
     }
-    res.render('admin/edit_badge', { badge });
+    res.render('admin/badges/edit', { user: req.session.user, badge });
 };
 
 // Edit badge logic
@@ -52,7 +52,7 @@ const deleteBadge = async (req, res) => {
 // View users and admin status
 const viewUsers = async (req, res) => {
     const users = await User.find();
-    res.render('admin/users', { users });
+    res.render('admin/users', { user: req.session.user, users });
 };
 
 // Change user password
