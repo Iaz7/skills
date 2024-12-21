@@ -14,13 +14,20 @@ const viewSkills = async (req, res) => {
         });
         res.render('skills/list', { skills, skillTree });
     } catch (err) {
-        res.status(500).render('500', { error: 'Failed to fetch skills' });
+        res.status(500).render('errors/500', { error: 'Failed to fetch skills', route: `/skills/${skillTree}` });
     }
 };
 
 // View a specific skill's details
 const viewSkill = async (req, res) => {
     const { skillTree, skillID } = req.params;
+    // Check if the ID is a valid MongoDB ID
+    if (!skillID.match(/^[0-9a-fA-F]{24}$/)) return res.status(404).render('errors/404', {
+        title: 'Skill not found',
+        message: 'The skill you are looking for does not exist.',
+        route: `/skills/${skillTree}/view/${skillID}`
+    });
+
     try {
         const skill = await Skill.findById(skillID);
         if (!skill) return res.status(404).render('errors/404', {
@@ -30,7 +37,7 @@ const viewSkill = async (req, res) => {
         });
         res.render('skills/view', { skill });
     } catch (err) {
-        res.status(500).render('500', { error: 'Failed to fetch skill' });
+        res.status(500).render('errors/500', { error: 'Failed to fetch skill', route: `/skills/${skillTree}/view/${skillID}` });
     };
 };
 
@@ -73,7 +80,7 @@ const addSkill = async (req, res) => {
         await newSkill.save();
         res.redirect(`/skills/${skillTree}`);
     } catch (err) {
-        res.status(500).render('500', { error: 'Failed to add skill' });
+        res.status(500).render('errors/500', { error: 'Failed to add skill' });
     };
 };
 
@@ -84,7 +91,7 @@ const verifySkill = async (req, res) => {
         await UserSkill.findByIdAndUpdate(skillID, { verified: true });
         res.redirect(`/skills/${skillTree}`);
     } catch (err) {
-        res.status(500).render('500', { error: 'Failed to verify skill' });
+        res.status(500).render('errors/500', { error: 'Failed to verify skill' });
     }
 };
 
@@ -107,7 +114,7 @@ const editSkill = async (req, res) => {
         await Skill.findByIdAndUpdate(skillID, req.body);
         res.redirect(`/skills/${skillTree}`);
     } catch (err) {
-        res.status(500).render('500', { error: 'Failed to update skill' });
+        res.status(500).render('errors/500', { error: 'Failed to update skill' });
     };
 };
 
@@ -118,7 +125,7 @@ const deleteSkill = async (req, res) => {
         await Skill.findByIdAndDelete(skillID);
         res.redirect(`/skills/${skillTree}`);
     } catch (err) {
-        res.status(500).render('500', { error: 'Failed to delete skill' });
+        res.status(500).render('errors/500', { error: 'Failed to delete skill' });
     }
 }
 

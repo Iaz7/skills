@@ -31,7 +31,7 @@ const editBadge = async (req, res) => {
         await Badge.findByIdAndUpdate(req.params.id, req.body);
         res.redirect('/admin/badges');
     } catch (err) {
-        res.status(500).render('500', { error: 'Failed to update badge' });
+        res.status(500).render('errors/500', { error: 'Failed to update badge' });
     }
 };
 
@@ -63,7 +63,7 @@ const changePassword = async (req, res) => {
         await User.findByIdAndUpdate(userID, { password: hashedPassword });
         res.status(200).json({ message: 'Password updated successfully' });
     } catch (err) {
-        res.status(500).render('500', { error: 'Failed to update password' });
+        res.status(500).render('errors/500', { error: 'Failed to update password' });
     }
 };
 
