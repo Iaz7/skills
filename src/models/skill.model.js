@@ -1,6 +1,7 @@
-const mongoose = require('mongoose');
+const { model, Schema } = require('mongoose');
 
-const skillSchema = new mongoose.Schema({
+const skillSchema = new Schema({
+    _id: { type: Schema.Types.ObjectId, auto: true },
     id: { type: Number, unique: true, required: true },
     name: { type: String, required: true },
     icon: { type: String, required: true },
@@ -10,9 +11,8 @@ const skillSchema = new mongoose.Schema({
     description: { type: String, required: true },
     score: { type: Number, required: true }
 }, {
-    _id: false,
     timestamps: true,
     versionKey: false
 });
 
-module.exports = mongoose.model('Skill', skillSchema, 'skills');
+module.exports = model('Skill', skillSchema, 'skills');
