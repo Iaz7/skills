@@ -11,7 +11,7 @@
         <h1 class="code">401</h1>
         <h2 class="err_title"><%= title %></h2>
         <p class="err_desc"><%= message %></p>
-        <a class="btn btn_primary" href="/users/login">Go to login</a>
+        <a class="btn btn_primary" href="/users/login?redirect=<%= route %>">Go to login</a>
         <a class="btn btn_secondary" href="/">Go back to the home page</a>
         <i class="route">You tried to access <%= route %></i>
     </div>
