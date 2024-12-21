@@ -66,7 +66,7 @@ const register = async (req, res) => {
  * @param {Object} res - The response object.
  */
 const showLoginForm = (req, res) => {
-    res.render('auth/login');
+    res.render('auth/login', { redirect: req.query.redirect || '/' });
 }
 
 /**
@@ -80,18 +80,19 @@ const showLoginForm = (req, res) => {
  * @returns {Promise<void>} - A promise that resolves to void.
  */
 const login = async (req, res) => {
-    console.log(req.body);
-    const { username, password } = req.body;
+    const { username, password, redirect } = req.body;
 
     if (!username || !password) return res.status(400).json({ erro: 'ERR_EMPTY', message: 'All fields are required' });
+
     const user = await User.findOne({ username });
 
     if (!user) return res.status(400).json({ error: 'ERR_INVALID', message: 'Invalid username or password' });
     if (!bcrypt.compareSync(password, user.password)) return res.status(400).json({ error: 'ERR_INVALID', message: 'Invalid username or password' });
 
-    req.session.user = { id: user._id, username: user.username };
+    req.session.user = { id: user._id, username: user.username, admin: user.admin };
 
-    res.redirect('/');
+    const redirectUrl = redirect || '/';
+    res.redirect(redirectUrl);
 }
 
 /**
@@ -111,7 +112,7 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
     req.session.destroy((err) => {
         if (err) return res.status(500).json({ error: 'ERR_SESSION', message: 'Failed to destroy login session' });
-        res.redirect('/');
+        res.redirect('/users/login');
     });
 }
 
