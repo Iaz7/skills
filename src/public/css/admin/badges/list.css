@@ -1,0 +1,59 @@
+@import url('../../global/vars.css');
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    background-color: var(--light-container);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow);
+    padding: var(--padding);
+}
+
+h1 {
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+th {
+    background-color: var(--light-bg);
+    font-weight: bold;
+    color: var(--dark-text);
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-size: 20px;
+    font-weight: 500;
+    border: none;
+}
+
+.btn_primary {
+    background-color: var(--primary);
+}
+
+.btn_danger {
+    background-color: var(--danger);
+}

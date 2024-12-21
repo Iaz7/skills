@@ -1,0 +1,83 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.badge-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.badge {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    overflow: visible;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+}
+
+.badge svg > polygon {
+    transition: filter 0.3s ease;
+}
+
+.badge:hover svg > polygon {
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.9));
+    transition: filter 0.3s ease;
+}
+
+svg {
+    overflow: visible;
+}
+
+.description {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    display: none;
+}
+
+button {
+    display: none;
+    position: absolute;
+    bottom: 5px;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    text-shadow: 1px 1px 5px black;
+}
+
+button.edit {
+    left: 5px;
+}
+
+button.info {
+    right: 5px;
+}
+
+.badge:hover .edit,
+.badge:hover .info {
+    display: block;
+}

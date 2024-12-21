@@ -1,0 +1,84 @@
+@import url('../../global/vars.css');
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 80%;
+    max-width: 800px;
+    background-color: var(--light-container);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px var(--shadow);
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 100%;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+form input {
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+}
+
+form button {
+    padding: 10px;
+    color: white;
+    background-color: var(--primary);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+}
+
+form button::before {
+    margin-right: 5px;
+}
+
+.save {
+    background-color: var(--success);
+}
+
+.save::before {
+    content: '💾';
+}
+
+.cancel {
+    background-color: var(--danger);
+}
+
+.cancel::before {
+    content: '❌';
+}

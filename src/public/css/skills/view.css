@@ -1,0 +1,70 @@
+@import url('../global/reset.css');
+@import url('../global/vars.css');
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--light-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-text);
+    text-align: center;
+    margin-top: 50px;
+    font-size: 2rem;
+}
+
+h2 {
+    font-weight: var(--font-weight-bold);
+    color: var(--dark-text);
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5rem;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 80%;
+    max-width: 800px;
+    background-color: var(--light-container);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 8px var(--shadow);
+    padding: var(--padding);
+}
+
+.badge {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    position: relative;
+    transform: scale(1);
+    transition: transform 0.3s ease;
+    overflow: visible;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius);
+    margin-top: 10px;
+}
