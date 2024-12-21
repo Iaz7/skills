@@ -4,7 +4,7 @@ const isAuthenticated = (req, res, next, fromIsAdmin=false) => {
         return next();
     } else {
         if (req.originalUrl === '/users/logout') return res.redirect('/users/login'); // Redirect to login page if user is logging out
-        res.status(401).render('errors/401', { title: 'Unauthorized', message: 'You must be logged in to access this page', route: req.originalUrl });
+        return res.redirect(`/users/login?redirect=${encodeURIComponent(req.originalUrl)}`);
     }
 };
 
