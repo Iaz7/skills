@@ -1,10 +1,13 @@
 [
     {
         "id": 1,
-        "name": "Light up an LED for the first time",
+        "text": "Light up an LED for the first time",
+        "icon": "/badges/led.svg",
+        "set": "electronics",
+        "tasks": [ "Task 1", "Task 2", "Task 3" ],
+        "resources": [ "Resource 1", "Resource 2"],
         "description": "Let there be light! Learn how to light up an LED",
-        "difficulty": "Beginner",
-        "icon": "/badges/led.svg"
+        "score": 1
     },
     {
         "id": 2,
