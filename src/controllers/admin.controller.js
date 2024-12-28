@@ -1,5 +1,6 @@
 const Badge = require('../models/badge.model');
 const User = require('../models/user.model');
+const bcrypt = require('bcryptjs');
 
 // Dashboard
 const dashboard = (req, res) => {
