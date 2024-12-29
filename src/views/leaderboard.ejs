@@ -1,39 +1,66 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>Range Explanations</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/leaderboard.css">
+    <title>Ranks</title>
 </head>
 <body>
-    <div class="container">
-        <%- include('partials/username-display') %>
+<div class="container">
 
-        <h1>Range Explanations</h1>
-        <table id="tabla">
+    <%- include('partials/username-display') %>
+
+    <h1>Ranks</h1>
+    <% badges.forEach((badge, rankNumber) => { %>
+        <h2><%= badge.name %></h2>
+        <table>
             <thead>
             <tr>
-                <th>Range</th>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Score</th>
                 <th>Badge</th>
-                <th>Required Bitpoints</th>
+                <th>Range</th>
             </tr>
             </thead>
-            <tbody id="table-body">
-            <% badges.forEach(badge => { %>
+            <tbody>
+            <% users.filter(user => user.score >= badge.bitpoints_min && user.score < badge.bitpoints_max).forEach(user => { %>
                 <tr>
-                    <td><%= badge.rango %></td>
+                    <td><%= rankNumber %></td>
+                    <td><%= user.username %></td>
+                    <td><%= user.score %></td>
                     <td>
-                        <img
-                                src="<%= badge.svg %>"
-                                alt="<%= badge.rango %>"
-                                width="50">
+                        <img src="<%= badge.image_url %>" alt="<%= badge.name %> Badge" width="50">
                     </td>
                     <td><%= badge.bitpoints_min %> - <%= badge.bitpoints_max %></td>
                 </tr>
             <% }); %>
             </tbody>
         </table>
-    </div>
+    <% }); %>
+
+    <h1>Ranks</h1>
+    <table id="ranks">
+        <thead>
+        <tr>
+            <th>Rank</th>
+            <th>Badge</th>
+            <th>Bitpoint Requirement</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% badges.forEach(badge => { %>
+            <tr>
+                <td><%= badge.name %></td>
+                <td>
+                    <img src="<%= badge.image_url %>" alt="<%= badge.name %> Badge" width="50">
+                </td>
+                <td><%= badge.bitpoints_min %> - <%= badge.bitpoints_max %></td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
