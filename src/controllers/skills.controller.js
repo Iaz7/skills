@@ -1,7 +1,6 @@
 const Skill = require('../models/skill.model');
 const UserSkill = require('../models/userskill.model');
 const User = require('../models/user.model');
-const {isAdmin} = require("../middleware/auth.middleware");
 const path = require("path");
 
 // View all skills in a skill tree
@@ -88,7 +87,7 @@ const addSkill = async (req, res) => {
 
     try {
         const icon = path.join("/img/skills", path.basename(req.file.path));
-        const id = await Skill.countDocuments()
+        const id = await Skill.countDocuments() + 1; // Get the next ID in the sequence
         const skill = new Skill({ id: id, text: req.body.text, icon: icon, set: skillTree, tasks: req.body.tasks.split("\r\n"), resources: req.body.resources.split("\r\n"), description: req.body.description, score: Number(req.body.score) });
         await skill.save();
 

@@ -62,12 +62,22 @@
             <div class="button-group">
                 <button type="submit" class="save-btn">Save</button>
                 <a href="/skills/<%= skill.set %>"><button type="button" class="cancel-btn">Cancel</button></a>
+                <button type="button" class="delete-btn" id="delete">Delete</button>
             </div>
         </form>
-        <div class="button-group">
-            <form action="/skills/<%= skill.set %>/delete/<%= skill._id %>" method="post"><button class="delete" type="submit">Delete</button></form>
-        </div>
     </div>
 </div>
+<script>
+    document.getElementById('delete').addEventListener('click', () => {
+        if (confirm('Are you sure you want to delete this skill?')) {
+            fetch('/skills/<%= skill.set %>/delete/<%= skill._id %>', {
+                method: 'POST'
+            }).then((res) => {
+                if (res.ok) window.location.href = '/skills/<%= skill.set %>';
+                else alert('Failed to delete skill, error code: ' + res.status);
+            });
+        };
+    });
+</script>
 </body>
 </html>
