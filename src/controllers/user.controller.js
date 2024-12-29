@@ -1,3 +1,4 @@
+const Badge = require('../models/badge.model');
 const User = require('../models/user.model');
 const bcrypt = require('bcryptjs');
 
@@ -9,7 +10,7 @@ const bcrypt = require('bcryptjs');
  * @param {Object} res - The response object.
  */
 const showRegisterForm = (req, res) => {
-    res.render('auth/register');
+    res.render('auth/register', { redirect: req.query.redirect || '/' });
 }
 
 /**
@@ -24,19 +25,20 @@ const showRegisterForm = (req, res) => {
  * @returns {Promise<void>} - A promise that resolves to void.
  */
 const register = async (req, res) => {
-    const { username, password, pass_confirmation } = req.body;
+    const { username, password, pass_confirmation, redirect } = req.body;
 
     if (!username || !password || !pass_confirmation) return res.status(400).json({ error: 'ERR_EMPTY', message: 'All fields are required' });
     if (password !== pass_confirmation) return res.status(400).json({ error: 'Passwords do not match' });
 
-    const user = new User({ username, password });
+    const user = new User({ username, password, admin: await User.countDocuments() === 0 });
     const salt = bcrypt.genSaltSync(10);
 
     user.password = bcrypt.hashSync(password, salt);
 
     try {
         await user.save();
-        res.status(201).json({ message: 'User created successfully' });
+        const redirectUrl = '/users/login' + (redirect ? `?redirect=${redirect}` : '');
+        return res.status(201).redirect(redirectUrl);
     } catch (err) {
         switch (err.code) {
             case 1: // Internal error (https://www.mongodb.com/docs/manual/reference/error-codes/#mongodb-error-1)
@@ -127,7 +129,17 @@ const logout = async (req, res) => {
  */
 const viewLeaderboard = async (req, res) => {
     const users = await User.find().sort({ points: -1 });
-    res.render('leaderboard', { users });
+    const userSkills = await UserSkill.find({ verified: true }).populate('skill', 'score');
+
+    users.forEach((user) => {
+        let score = 0;
+        userSkills.filter(userSkill => user._id.equals(userSkill.user)).forEach((userSkill) => score += userSkill.skill.score);
+        user.score = score;
+        user.save();
+    });
+
+    const badges = await Badge.find().sort({ bitpoints_min: 1 });
+    res.render('leaderboard', { users, badges });
 };
 
 module.exports = { showRegisterForm, register, showLoginForm, login, logout, viewLeaderboard };
