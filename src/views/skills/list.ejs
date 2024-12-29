@@ -7,6 +7,8 @@
     <title><%= skillTree %> - Skill Tree</title>
 </head>
 <body>
+    <%- include('../partials/username-display') %>
+
     <h1>Skill Tree: <%= skillTree %></h1>
 
     <script>const descriptions = {}</script>
@@ -32,7 +34,7 @@
                             <stop offset="100%" style="stop-color: #397f39; stop-opacity: 1" />
                           </linearGradient>
                     </defs>
-                    <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" class="hexagon" <% if (userSkills.find(userSkill => userSkill.skill.equals(skill._id) && userSkill.user.equals(user))?.verified) {%> style="fill: #5ac35a"<%}%>/>
+                    <polygon points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5" class="hexagon" <% if (userSkills.find(userSkill => userSkill.skill.equals(skill._id) && userSkill.user.equals(user.id))?.verified) {%> style="fill: #5ac35a"<%}%>/>
 
                     <circle cx="15" cy="15" r="10" class="hex-circle hex-circle-red" />
                     <text x="15" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold">
@@ -40,7 +42,7 @@
                     </text>
                     <circle cx="85" cy="15" r="10" class="hex-circle hex-circle-green" />
                     <text x="85" y="20" text-anchor="middle" fill="white" font-size="10" font-weight="bold">
-                        <%= userSkills.find(userSkill => userSkill.skill.equals(skill._id) && userSkill.user.equals(user))?.verifications.filter(verification => verification.approved).length ?? 0  %>
+                        <%= userSkills.find(userSkill => userSkill.skill.equals(skill._id) && userSkill.user.equals(user.id))?.verifications.filter(verification => verification.approved).length ?? 0  %>
                     </text>
 
                     <text x="50%" y="35%" text-anchor="middle" fill="black" font-size="9">
