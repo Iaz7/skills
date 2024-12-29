@@ -1,7 +1,6 @@
 const Skill = require('../models/skill.model');
 const UserSkill = require('../models/userskill.model');
 const User = require('../models/user.model');
-const {isAdmin} = require("../middleware/auth.middleware");
 const path = require("path");
 
 // View all skills in a skill tree

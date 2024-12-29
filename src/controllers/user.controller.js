@@ -1,7 +1,6 @@
 const User = require('../models/user.model');
 const Badge = require('../models/badge.model');
 const UserSkill = require('../models/userskill.model');
-const Skill = require('../models/skill.model');
 const bcrypt = require('bcryptjs');
 
 
