@@ -10,13 +10,12 @@ const viewSkills = async (req, res) => {
     try {
         const skills = await Skill.find({ set: skillTree }).sort({ id: 1 });
         const userSkills = await UserSkill.find();
-        const user = req.session.user.id;
         if (skills.length === 0) return res.status(404).render('errors/404', {
             title: 'Skill tree not found',
             message: 'The skill tree you are looking for does not exist.',
             route: `/skills/${skillTree}`
         });
-        res.render('skills/list', { skills, skillTree, userSkills, user });
+        res.render('skills/list', { skills, skillTree, userSkills, user: req.session.user });
     } catch (err) {
         res.status(500).render('errors/500', { error: 'Failed to fetch skills', route: `/skills/${skillTree}` });
     }
@@ -77,7 +76,7 @@ const submitEvidence = async (req, res) => {
 // New skill form (admin only)
 const addSkillForm = (req, res) => {
     const { skillTree } = req.params;
-    res.render('skills/add', { skillTree });
+    res.render('skills/add', { skillTree, user: req.session.user });
 };
 
 // New skill (admin only)
@@ -133,7 +132,7 @@ const editSkillForm = async (req, res) => {
         message: 'The skill you are looking for does not exist.',
         route: `/skills/${skillTree}`
     });
-    res.render('skills/edit', { skill, skillTree, treeSkillCount });
+    res.render('skills/edit', { skill, skillTree, treeSkillCount, user: req.session.user });
 };
 
 // Edit skill (admin only)

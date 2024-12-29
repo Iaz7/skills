@@ -94,7 +94,7 @@ const viewLeaderboard = async (req, res) => {
     });
 
     const badges = await Badge.find().sort({ bitpoints_min: 1 });
-    res.render('leaderboard', { users, badges });
+    res.render('leaderboard', { users, badges, user: req.session.user });
 };
 
 module.exports = { showRegisterForm, register, showLoginForm, login, logout, viewLeaderboard };
