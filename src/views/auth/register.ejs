@@ -15,20 +15,21 @@
                     <label for="username">Username</label>
                     <input type="text" name="username" id="username" required>
                 </div>
-    
+                
                 <div class="form-control">
                     <label for="password">Password</label>
                     <input type="password" name="password" id="password" required>
                 </div>
-    
+                
                 <div class="form-control">
                     <label for="pass_confirmation">Confirm Password</label>
                     <input type="password" name="pass_confirmation" id="pass_confirmation" required>
                 </div>
-    
+                
+                <input type="hidden" name="redirect" value="<%= redirect %>">
                 <button class="btn" type="submit">Register</button>
             </form>
-            <p>Already have an account? <a href="/users/login">Login now</a></p>
+            <p>Already have an account? <a href="/users/login<%= (redirect) ? '?redirect=' + redirect : '' %>">Login now</a></p>
         </div>
     </div>
 </body>

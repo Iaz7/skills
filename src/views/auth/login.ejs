@@ -24,7 +24,7 @@
                 <input type="hidden" name="redirect" value="<%= redirect %>">
                 <button class="btn" type="submit">Login</button>
             </form>
-            <p>Don't have an account? <a href="/users/register">Register now</a></p>
+            <p>Don't have an account? <a href="/users/register<%= (redirect) ? '?redirect=' + redirect : '' %>">Register now</a></p>
         </div>
     </div>
 </body>
