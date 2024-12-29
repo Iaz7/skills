@@ -1,11 +1,11 @@
 require('dotenv').config();
+const mongoose = require('mongoose');
 const path = require('path');
 const express = require('express');
+
 const app = express();
 const PORT = process.env.PORT || 3000;
-const { connect } = require('mongoose');
 const session = require('express-session');
-const {flatten} = require("express/lib/utils");
 const flash = require('connect-flash');
 
 // Middleware
@@ -48,17 +48,30 @@ app.use('/users', require('./routes/users.routes'));
 app.use('/skills', require('./routes/skills.routes'));
 app.use('/admin', require('./routes/admin.routes'));
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-
-// MongoDB (mongoose)
-(async () => {
+const connectToDatabase = async () => {
     try {
-        await connect(process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/skills');
-        console.log('Connected to MongoDB');
+        if (mongoose.connection.readyState === 0) {
+            const dbUri = process.env.NODE_ENV === 'test'
+                ? process.env.TEST_MONGO_URI || 'mongodb://127.0.0.1:27017/skills-test'
+                : process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/skills';
+            await mongoose.connect(dbUri);
+            console.log('Connected to MongoDB');
+            console.log('Database:', process.env.NODE_ENV === 'test' ? 'skills-test' : 'skills');
+        }
     } catch (err) {
         console.error(err);
         process.exit(1);
     }
-})();
+};
+
+// Only connect to the database if not running tests
+if (require.main === module) {
+    (async () => {
+        await connectToDatabase();
+        app.listen(PORT, () => {
+            console.log(`Server is running on port ${PORT}`);
+        });
+    })();
+};
+
+module.exports = { app, connectToDatabase };

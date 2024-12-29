@@ -9,7 +9,7 @@ const dashboard = (req, res) => {
 
 // View all badges
 const viewBadges = async (req, res) => {
-    const badges = await Badge.find();
+    const badges = await Badge.find().sort({bitpoints_min: 1});
     res.render('admin/badges/list', { user: req.session.user, badges });
 };
 

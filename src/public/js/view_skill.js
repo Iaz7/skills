@@ -61,4 +61,5 @@ async function postVerification(userSkillId, approved) {
         },
         body: JSON.stringify(data)
     });
+    window.location.reload();
 }

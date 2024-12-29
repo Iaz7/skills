@@ -1,7 +1,6 @@
 const Skill = require('../models/skill.model');
 const UserSkill = require('../models/userskill.model');
 const User = require('../models/user.model');
-const {isAdmin} = require("../middleware/auth.middleware");
 const path = require("path");
 
 // View all skills in a skill tree
@@ -88,7 +87,7 @@ const addSkill = async (req, res) => {
 
     try {
         const icon = path.join("/img/skills", path.basename(req.file.path));
-        const id = await Skill.countDocuments()
+        const id = await Skill.countDocuments() + 1; // Get the next ID in the sequence
         const skill = new Skill({ id: id, text: req.body.text, icon: icon, set: skillTree, tasks: req.body.tasks.split("\r\n"), resources: req.body.resources.split("\r\n"), description: req.body.description, score: Number(req.body.score) });
         await skill.save();
 
@@ -99,7 +98,7 @@ const addSkill = async (req, res) => {
     }
 };
 
-// Verify skill (admin only)
+// Verify skill
 const verifySkill = async (req, res) => {
     const { skillTree, skillID } = req.params;
     const { userSkillId, approved } = req.body;
@@ -128,12 +127,13 @@ const verifySkill = async (req, res) => {
 const editSkillForm = async (req, res) => {
     const { skillTree, skillID } = req.params;
     const skill = await Skill.findById(skillID);
+    const treeSkillCount = await Skill.countDocuments({set: skillTree})
     if (!skill) return res.status(404).render('errors/404', {
         title: 'Skill not found',
         message: 'The skill you are looking for does not exist.',
         route: `/skills/${skillTree}`
     });
-    res.render('skills/edit', { skill, skillTree });
+    res.render('skills/edit', { skill, skillTree, treeSkillCount });
 };
 
 // Edit skill (admin only)

@@ -1,11 +1,12 @@
 const User = require('../models/user.model');
+const Badge = require('../models/badge.model');
+const UserSkill = require('../models/userskill.model');
 const bcrypt = require('bcryptjs');
-const path = require("path");
-const fs = require("fs");
+
 
 
 const showRegisterForm = (req, res) => {
-    res.render('auth/register');
+    res.render('auth/register', { redirect: req.query.redirect || '/' });
 }
 
 
@@ -80,27 +81,20 @@ const logout = async (req, res) => {
     });
 }
 
+
 const viewLeaderboard = async (req, res) => {
-    const badgesPath = path.join(__dirname, '../public/badges');
+    const users = await User.find().sort({ points: -1 });
+    const userSkills = await UserSkill.find({ verified: true }).populate('skill', 'score');
 
-    fs.readdir(badgesPath, (err, files) => {
-        if (err) {
-            console.error('Error al leer la carpeta de badges:', err);
-            return res.status(500).send('Error al cargar los badges');
-        }
-
-        // Filtrar solo archivos SVG
-        const badges = files
-            .filter(file => file.endsWith('.svg'))
-            .map((file, index) => ({
-                rango: `Rango ${index + 1}`, // Generar un rango dinámico
-                bitpoints_min: index * 100, // Generar valores mínimos dinámicos
-                bitpoints_max: (index + 1) * 100, // Generar valores máximos dinámicos
-                svg: `/badges/${file}` // Ruta relativa al archivo SVG
-            }));
-
-        res.render('leaderboard', { badges });
+    users.forEach((user) => {
+        let score = 0;
+        userSkills.filter(userSkill => user._id.equals(userSkill.user)).forEach((userSkill) => score += userSkill.skill.score);
+        user.score = score;
+        user.save();
     });
+
+    const badges = await Badge.find().sort({ bitpoints_min: 1 });
+    res.render('leaderboard', { users, badges });
 };
 
 module.exports = { showRegisterForm, register, showLoginForm, login, logout, viewLeaderboard };
