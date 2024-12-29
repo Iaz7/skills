@@ -5,6 +5,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const { connect } = require('mongoose');
 const session = require('express-session');
+const {flatten} = require("express/lib/utils");
+const flash = require('connect-flash');
 
 // Middleware
 app.set('view engine', 'ejs');
@@ -15,9 +17,30 @@ app.use(express.json());
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
-    saveUninitialized: false,
-    cookie: { secure: false } // Change to true if HTTPS
+    saveUninitialized: true,
+   cookie: { secure: false } //Change to true if HTTPS
 }))
+
+app.use(flash());
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    console.log('Flash messages:', {
+        success_msg: res.locals.success_msg,
+        error_msg: res.locals.error_msg,
+        error: res.locals.error
+    });
+    next();
+});
+
+app.get('/flash-multi-test', (req, res) => {
+    req.flash('success_msg', 'First message');
+    req.flash('success_msg', 'Second message');
+    const messages = req.flash('success_msg'); // Recupera y limpia todos los mensajes del tipo
+    res.send(messages); // Debería mostrar ["First message", "Second message"]
+});
+
 
 // Routes
 app.use('/', require('./routes/index.routes'));

@@ -5,7 +5,7 @@ const userSchema = new Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     score: { type: Number, default: 0 },
-    admin: { type: Boolean, default: false },
+    admin: { type: Boolean, required: true },
     completedSkills: [{ ref: 'Skill', type: Schema.Types.ObjectId }]
 }, {
     timestamps: true,

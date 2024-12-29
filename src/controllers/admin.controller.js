@@ -1,5 +1,6 @@
 const Badge = require('../models/badge.model');
 const User = require('../models/user.model');
+const bcrypt = require('bcryptjs');
 
 // Dashboard
 const dashboard = (req, res) => {
@@ -57,13 +58,20 @@ const viewUsers = async (req, res) => {
 
 // Change user password
 const changePassword = async (req, res) => {
+    console.log(req.body);
     const { userID, newPassword } = req.body;
+    if(newPassword.length <= 4){
+        req.flash('error_msg', 'Password too short');
+        return res.redirect('/admin/users')
+    }
     try {
         const hashedPassword = await bcrypt.hash(newPassword, 10);
         await User.findByIdAndUpdate(userID, { password: hashedPassword });
         res.status(200).json({ message: 'Password updated successfully' });
     } catch (err) {
-        res.status(500).render('errors/500', { error: 'Failed to update password' });
+        req.flash('error', 'Failed to update user');
+        res.redirect(`/users/${req.params.id}`);
+        //   res.status(500).render('errors/500', { error: 'Failed to update password' });
     }
 };
 

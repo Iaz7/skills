@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Users</title>
+</head>
+<body>
+    <%- include('../partials/messages') %>
+    <%- include('../partials/username-display')%>
+
+    <div class="container">
+        <h1> Manage Users </h1>
+
+        <!-- Lista de todos los usuarios -->
+        <section>
+            <h2>All Users</h2>
+            <% if (users && users.length > 0) { %>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Username</th>
+                        <th>Admin Status</th>
+                        <th>New Password</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% users.forEach(user => { %>
+                        <form action="/admin/change-password" method="POST" style="display: inline;">
+                            <tr>
+                                <td><%= user.username %></td>
+                                <td><%= user.isAdmin ? 'Admin' : 'Regular User' %></td>
+                                <td>
+                                    <input name="newPassword" id="newPassword" type="password">
+                                </td>
+                                <td>
+                                        <input type="hidden" name="userID" value="<%= user._id %>">
+                                        <button type="submit">Change Password</button>
+                                </td>
+                            </tr>
+                        </form>
+                    <% }); %>
+                    </tbody>
+                </table>
+            <% } else { %>
+                <p>No users found.</p>
+            <% } %>
+        </section>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<style>
+    .navbar {
+        background-color: #ebd76e;
+        padding: 10px;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .navbar ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .navbar li {
+        font-family: 'Arial', sans-serif;
+        margin: 0 10px;
+    }
+    .navbar a {
+        font-family: 'Arial', sans-serif;
+        text-decoration: none;
+        font-weight:bold ;
+        color: #003eff;
+    }
+</style>
+<div class="navbar">
+    <ul>
+        <% if (user) { %>
+            <!-- Usuario autenticado -->
+            <li>Welcome, <%= user.username %>!</li>
+            <li><a href="/skills">electronics</a></li>
+            <li><a href="/users/leaderboard">Leaderboard</a></li>
+            <% if (user.admin) { %>
+                <li><a href="/admin/users">Admin Panel</a></li>
+            <% } %>
+            <li><a href="/users/logout">Logout</a></li>
+        <% } else { %>
+            <!-- Usuario no autenticado -->
+            <li><a href="/users/login">Login</a></li>
+        <% } %>
+    </ul>
+</div>
