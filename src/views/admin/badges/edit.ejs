@@ -7,6 +7,7 @@
     <title><%= badge._id %> @ Badge Editor</title>
 </head>
 <body>
+    <%- include('../../partials/username-display') %>
     <h1>Edit Badge</h1>
     <div class="container">
         <form method="POST" action="/admin/badges/edit/<%= badge._id %>">
