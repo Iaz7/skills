@@ -161,6 +161,7 @@ const editSkill = async (req, res) => {
 const deleteSkill = async (req, res) => {
     const { skillTree, skillID } = req.params;
     try {
+        await UserSkill.deleteMany({ skill: skillID });
         await Skill.findByIdAndDelete(skillID);
         res.redirect(`/skills/${skillTree}`);
     } catch (err) {
