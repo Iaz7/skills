@@ -88,7 +88,7 @@ const addSkill = async (req, res) => {
 
     try {
         const icon = path.join("/img/skills", path.basename(req.file.path));
-        const id = await Skill.countDocuments()
+        const id = await Skill.countDocuments() + 1; // Get the next ID in the sequence
         const skill = new Skill({ id: id, text: req.body.text, icon: icon, set: skillTree, tasks: req.body.tasks.split("\r\n"), resources: req.body.resources.split("\r\n"), description: req.body.description, score: Number(req.body.score) });
         await skill.save();
 
