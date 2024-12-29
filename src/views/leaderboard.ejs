@@ -9,6 +9,35 @@
     <body>
         <div class="container">
             <h1>Ranks</h1>
+            <% badges.forEach((badge, rankNumber) => { %>
+                <h2><%= badge.name %></h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Username</th>
+                        <th>Score</th>
+                        <th>Badge</th>
+                        <th>Range</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% users.filter(user => user.score >= badge.bitpoints_min && user.score < badge.bitpoints_max).forEach(user => { %>
+                        <tr>
+                            <td><%= rankNumber %></td>
+                            <td><%= user.username %></td>
+                            <td><%= user.score %></td>
+                            <td>
+                                <img src="<%= badge.image_url %>" alt="<%= badge.name %> Badge" width="50">
+                            </td>
+                            <td><%= badge.bitpoints_min %> - <%= badge.bitpoints_max %></td>
+                        </tr>
+                    <% }); %>
+                    </tbody>
+                </table>
+            <% }); %>
+
+            <h1>Ranks</h1>
             <table id="ranks">
                 <thead>
                     <tr>
@@ -18,13 +47,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% ranks.forEach(rank => { %>
+                    <% badges.forEach(badge => { %>
                         <tr>
-                            <td><%= rank.name %></td>
+                            <td><%= badge.name %></td>
                             <td>
-                                <img src="https://raw.githubusercontent.com/Obijuan/digital-electronics-with-open-FPGAs-tutorial/master/rangos/png/<%= rank.icon %>" alt="<%= rank.name %> Badge" width="50">
+                                <img src="<%= badge.image_url %>" alt="<%= badge.name %> Badge" width="50">
                             </td>
-                            <td><%= rank.bitpoints_min %> - <%= rank.bitpoints_max %></td>
+                            <td><%= badge.bitpoints_min %> - <%= badge.bitpoints_max %></td>
                         </tr>
                     <% }); %>
                 </tbody>
