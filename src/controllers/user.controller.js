@@ -1,4 +1,7 @@
 const User = require('../models/user.model');
+const Badge = require('../models/badge.model');
+const UserSkill = require('../models/userskill.model');
+const Skill = require('../models/skill.model');
 const bcrypt = require('bcryptjs');
 
 
@@ -127,7 +130,17 @@ const logout = async (req, res) => {
  */
 const viewLeaderboard = async (req, res) => {
     const users = await User.find().sort({ points: -1 });
-    res.render('leaderboard', { users });
+    const userSkills = await UserSkill.find({verified: true}).populate('skill', 'score');
+    console.log(userSkills);
+    users.forEach(user =>  {
+        let score = 0;
+        userSkills.filter(userSkill => user._id.equals(userSkill.user)).forEach(userSkill => score += userSkill.skill.score);
+        user.score = score;
+        user.save();
+    });
+
+    const badges = await Badge.find().sort({ bitpoints_min: 1 });
+    res.render('leaderboard', { users, badges });
 };
 
 module.exports = { showRegisterForm, register, showLoginForm, login, logout, viewLeaderboard };
