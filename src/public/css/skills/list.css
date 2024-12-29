@@ -1,83 +1,160 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
     margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
 }
 
 h1 {
     text-align: center;
-    margin-top: 50px;
+    font-size: 2em;
+    margin-bottom: 10px;
+    margin-top: 75px;
 }
 
-.badge-container {
+.skill-tree {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.skill-tree-box {
+    display: inline-block;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.description {
+    text-align: center;
+    font-size: 1em;
+    line-height: 1.5;
+}
+
+.color-picker {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.color-picker .start-here {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.custom-svg {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.custom-svg label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.custom-svg input[type="text"] {
+    width: 200px;
+    padding: 5px;
+    font-size: 1em;
+}
+
+.custom-svg button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.custom-svg button:hover {
+    background-color: #0056b3;
+}
+
+.svg-container {
     display: flex;
     flex-wrap: wrap;
+    margin: 70px auto;
     gap: 20px;
     justify-content: center;
+    max-width: 600px;
 }
 
-.badge {
+.svg-wrapper {
     width: 100px;
     height: 100px;
     cursor: pointer;
     position: relative;
-    transform: scale(1);
-    transition: transform 0.3s ease;
-    overflow: visible;
 }
 
-.badge:hover {
+.hexagon {
+    fill: white;
+    stroke: black;
+    stroke-width: 1px;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.highlight .hexagon {
     transform: scale(1.1);
 }
 
-.badge svg > polygon {
-    transition: filter 0.3s ease;
+.icon-button {
+    display: none;
+    position: absolute;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-.badge:hover svg > polygon {
-    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.9));
-    transition: filter 0.3s ease;
+.left-button {
+    top: 80%;
+    left: 8px;
 }
 
-svg {
-    overflow: visible;
+.right-button {
+    top: 80%;
+    right: 8px;
 }
 
-.description {
+.svg-wrapper.highlight .icon-button {
+    display: block;
+}
+
+@media print {
+    .color-picker {
+        display: none;
+    }
+    .custom-svg {
+        display: none;
+    }
+    .print-button {
+        display: none;
+    }
+}
+
+footer {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
+    background-color: rgb(235, 215, 110);
+    border-top: 2px solid black;
     text-align: center;
-    padding: 10px;
-    font-size: 14px;
-    display: none;
+    padding: 20px;
+    z-index: 1000;
+    font-weight: bold;
 }
 
-button {
-    display: none;
-    position: absolute;
-    bottom: 5px;
-    padding: 5px 10px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 12px;
-    text-shadow: 1px 1px 5px black;
+.hex-circle {
+    stroke-width: 2; /* Ancho del borde */
 }
 
-button.edit {
-    left: 5px;
+.hex-circle-red {
+    fill: url(#gradient-red); /* Gradiente rojo */
+    stroke: #d32323; /* Borde rojo sólido */
 }
 
-button.info {
-    right: 5px;
-}
-
-.badge:hover .edit,
-.badge:hover .info {
-    display: block;
+.svg-wrapper .hex-circle-green {
+    fill: url(#gradient-green); /* Gradiente verde */
+    stroke: #397f39;; /* Borde verde sólido */
 }

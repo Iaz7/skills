@@ -1,5 +1,8 @@
 const Skill = require('../models/skill.model');
 const UserSkill = require('../models/userskill.model');
+const User = require('../models/user.model');
+const {isAdmin} = require("../middleware/auth.middleware");
+const path = require("path");
 
 // View all skills in a skill tree
 const viewSkills = async (req, res) => {
@@ -7,12 +10,14 @@ const viewSkills = async (req, res) => {
     const { skillTree } = req.params;
     try {
         const skills = await Skill.find({ set: skillTree }).sort({ id: 1 });
+        const userSkills = await UserSkill.find();
+        const user = req.session.user.id;
         if (skills.length === 0) return res.status(404).render('errors/404', {
             title: 'Skill tree not found',
             message: 'The skill tree you are looking for does not exist.',
             route: `/skills/${skillTree}`
         });
-        res.render('skills/list', { skills, skillTree });
+        res.render('skills/list', { skills, skillTree, userSkills, user });
     } catch (err) {
         res.status(500).render('errors/500', { error: 'Failed to fetch skills', route: `/skills/${skillTree}` });
     }
@@ -30,12 +35,13 @@ const viewSkill = async (req, res) => {
 
     try {
         const skill = await Skill.findById(skillID);
+        const userSkills = await UserSkill.find().populate('user', 'username');
         if (!skill) return res.status(404).render('errors/404', {
             title: 'Skill not found',
             message: 'The skill you are looking for does not exist.',
             route: `/skills/${skillTree}/view/${skillID}`
         });
-        res.render('skills/view', { skill });
+        res.render('skills/view', { skill, userSkills, user: req.session.user.id });
     } catch (err) {
         res.status(500).render('errors/500', { error: 'Failed to fetch skill', route: `/skills/${skillTree}/view/${skillID}` });
     };
@@ -43,23 +49,28 @@ const viewSkill = async (req, res) => {
 
 // Submit evidence for skill verification
 const submitEvidence = async (req, res) => {
-    const {skillTree, skillID, userSkillID } = req.params;
-    const { evidence } = req.body;
+    const { skillTree } = req.params;
+    const { skillId, userSkillId, evidence } = req.body;
 
     try {
-        if (userSkillID) {
-            await UserSkill.findByIdAndUpdate(userSkillID, { evidence });
+        if (userSkillId) {
+            await UserSkill.findByIdAndUpdate(userSkillId, { evidence });
             res.json({ message: 'Evidence updated successfully' });
         } else {
             const newUserSkill = new UserSkill({
                 user: req.session.user.id,
-                skill: skillID,
+                skill: skillId,
+                completed: true,
                 evidence
             });
             await newUserSkill.save();
+            const user = await User.findById(newUserSkill.user);
+            user.completedSkills.push(newUserSkill.skill);
+            await user.save();
             res.json({ message: 'Evidence submitted successfully' });
         };
     } catch (err) {
+        console.log(err);
         res.status(500).json({ error: 'Failed to submit evidence' });
     }
 };
@@ -76,21 +87,39 @@ const addSkill = async (req, res) => {
     const { text, description, tasks, resources, score, icon } = req.body;
 
     try {
-        const newSkill = new Skill({ skillTree, text, description, tasks: tasks.split('\n'), resources: resources.split('\n'), score, icon });
-        await newSkill.save();
+        const icon = path.join("/img/skills", path.basename(req.file.path));
+        const id = await Skill.countDocuments()
+        const skill = new Skill({ id: id, text: req.body.text, icon: icon, set: skillTree, tasks: req.body.tasks.split("\r\n"), resources: req.body.resources.split("\r\n"), description: req.body.description, score: Number(req.body.score) });
+        await skill.save();
+
         res.redirect(`/skills/${skillTree}`);
     } catch (err) {
+        console.log(err);
         res.status(500).render('errors/500', { error: 'Failed to add skill' });
-    };
+    }
 };
 
 // Verify skill (admin only)
 const verifySkill = async (req, res) => {
     const { skillTree, skillID } = req.params;
+    const { userSkillId, approved } = req.body;
+
     try {
-        await UserSkill.findByIdAndUpdate(skillID, { verified: true });
-        res.redirect(`/skills/${skillTree}`);
+        const userSkill = await UserSkill.findById(userSkillId);
+        if (userSkill.verifications != null && userSkill.verifications.find(verification => verification.user == req.session.user.id)) {
+            res.status(401).json("Already verified this evidence");
+        }
+        else {
+            userSkill.verifications.push({
+                user: req.session.user.id,
+                approved: approved,
+            });
+            if (req.session.user.admin || userSkill.verifications.filter(verification => verification.approved).length >= 3) userSkill.verified = true;
+            await userSkill.save();
+            res.redirect(`/skills/${skillTree}`);
+        }
     } catch (err) {
+        console.log(err);
         res.status(500).render('errors/500', { error: 'Failed to verify skill' });
     }
 };
@@ -111,11 +140,22 @@ const editSkillForm = async (req, res) => {
 const editSkill = async (req, res) => {
     const { skillTree, skillID } = req.params;
     try {
-        await Skill.findByIdAndUpdate(skillID, req.body);
+        const data = {
+            text: req.body.text,
+            description: req.body.description,
+            tasks: req.body.tasks.split("\r\n"),
+            resources:req.body.resources.split("\r\n"),
+            score: Number(req.body.score)
+        };
+
+        if (req.file) { data.icon = path.join("/img/skills", path.basename(req.file.path)) };
+
+        await Skill.findByIdAndUpdate(skillID, data);
         res.redirect(`/skills/${skillTree}`);
     } catch (err) {
+        console.log(err);
         res.status(500).render('errors/500', { error: 'Failed to update skill' });
-    };
+    }
 };
 
 // Delete skill (admin only)
