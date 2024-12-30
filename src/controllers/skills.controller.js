@@ -66,10 +66,12 @@ const submitEvidence = async (req, res) => {
             const user = await User.findById(newUserSkill.user);
             user.completedSkills.push(newUserSkill.skill);
             await user.save();
-            res.json({ message: 'Evidence submitted successfully' });
+            req.flash('success_msg','Evidence submitted successfully');
+            res.status(200).json({ message: 'Evidence submitted successfully' });
         };
     } catch (err) {
         console.log(err);
+        req.flash('error_msg','Failed to submit evidence');
         res.status(500).json({ error: 'Failed to submit evidence' });
     }
 };
@@ -86,7 +88,7 @@ const addSkill = async (req, res) => {
     const { text, description, tasks, resources, score, icon } = req.body;
 
     try {
-        const icon = path.join("/img/skills", path.basename(req.file.path));
+        const icon = req.file ? path.join("/img/skills", path.basename(req.file.path)) : "";
         const id = await Skill.countDocuments() + 1; // Get the next ID in the sequence
         const skill = new Skill({ id: id, text: req.body.text, icon: icon, set: skillTree, tasks: req.body.tasks.split("\r\n"), resources: req.body.resources.split("\r\n"), description: req.body.description, score: Number(req.body.score) });
         await skill.save();
@@ -105,8 +107,9 @@ const verifySkill = async (req, res) => {
 
     try {
         const userSkill = await UserSkill.findById(userSkillId);
-        if (userSkill.verifications != null && userSkill.verifications.find(verification => verification.user == req.session.user.id)) {
-            res.status(401).json("Already verified this evidence");
+        if (userSkill.verifications.some(verification => verification.user.equals(req.session.user.id))) {
+            req.flash('error_msg','Already verified this evidence');
+            res.status(400).json({ error: 'Already verified this evidence' });
         }
         else {
             userSkill.verifications.push({
@@ -118,11 +121,13 @@ const verifySkill = async (req, res) => {
                 userSkill.verified = true;
             }
             await userSkill.save();
-            res.redirect(`/skills/${skillTree}`);
+            req.flash('success_msg','Verification sent successfully');
+            res.status(200).json({ success: 'Verification sent successfully' });
         }
     } catch (err) {
         console.log(err);
-        res.status(500).render('errors/500', { error: 'Failed to verify skill' });
+        req.flash('error_msg','Failed to verify evidence');
+        res.status(500).json({ error: 'Failed to verify evidence' });
     }
 };
 

@@ -4,7 +4,7 @@ const skillSchema = new Schema({
     _id: { type: Schema.Types.ObjectId, auto: true },
     id: { type: Number, unique: true, required: true },
     text: { type: String, required: true },
-    icon: { type: String, required: true },
+    icon: { type: String, required: false },
     set: { type: String, required: true },
     tasks: [{ type: String, required: true }],
     resources: [{ type: String, required: true }],
