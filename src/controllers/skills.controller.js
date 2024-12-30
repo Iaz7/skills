@@ -168,8 +168,6 @@ const deleteSkill = async (req, res) => {
     try {
         await UserSkill.deleteMany({ skill: skillID });
         await Skill.findByIdAndDelete(skillID);
-        req.flash('success_msg', 'Skill deleted without any problem')
-        res.redirect(`/skills/${skillTree}`);
     } catch (err) {
         res.status(500).render('errors/500', { error: 'Failed to delete skill' });
     }
