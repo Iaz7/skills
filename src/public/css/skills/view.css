@@ -1,3 +1,4 @@
+/* General Body Styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -5,36 +6,38 @@ body {
     background-color: #f5f5f5;
 }
 
+/* Content Area */
 .content {
     max-width: 800px;
     margin: 50px auto;
     background-color: #fff;
-    padding: 20px 150px;
+    padding: 20px 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
+/* Headings Styling */
 h1 {
     font-size: 1.8em;
     font-weight: bold;
+    text-align: center;
+    color: #333;
 }
 
-h3 {
+h3, h4 {
     font-size: 1.2em;
     font-weight: bold;
     margin-top: 1.2em;
-}
-
-h4 {
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 1.2em;
+    color: #333;
 }
 
 p {
     font-size: 1em;
     line-height: 1.6;
+    color: #555;
 }
 
+/* List Styling */
 ul {
     list-style-type: none;
     padding-left: 0;
@@ -43,11 +46,15 @@ ul {
 ul li {
     padding: 6px 0;
     font-size: 1em;
+    color: #555;
 }
 
+/* Button Styling */
 button {
     border-radius: 4px;
     margin-right: 20px;
+    cursor: pointer;
+    font-size: 1em;
 }
 
 .button-green {
@@ -55,10 +62,9 @@ button {
     background-color: rgb(56, 179, 68);
     color: white;
     border: none;
-    cursor: pointer;
 }
 
-.button-green:hover  {
+.button-green:hover {
     transition: 0.1s;
     background-color: #397f39;
 }
@@ -72,10 +78,9 @@ button {
     background-color: rgb(179, 56, 56);
     color: white;
     border: none;
-    cursor: pointer;
 }
 
-.button-red:hover  {
+.button-red:hover {
     transition: 0.1s;
     background-color: #7f3939;
 }
@@ -84,23 +89,31 @@ button {
     background-color: #600000;
 }
 
+/* Textarea */
 #textbox {
     margin-bottom: 10px;
     height: 100px;
     width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 1em;
 }
 
+/* Resources List */
 #resources {
     list-style-position: inside;
     list-style-type: disc;
+    padding-left: 20px;
 }
 
-/*Para el hexágono*/
+/* Hexagon SVG Styling */
 .svg-wrapper {
     width: 100px;
     height: 100px;
     cursor: pointer;
     position: relative;
+    margin: 0 auto;
 }
 
 .hexagon {
@@ -116,32 +129,67 @@ button {
 }
 
 .hex-circle {
-    stroke-width: 2; /* Ancho del borde */
+    stroke-width: 2;
 }
 
 .hex-circle-red {
-    fill: url(#gradient-red); /* Gradiente rojo */
-    stroke: #d32323; /* Borde rojo sólido */
+    fill: url(#gradient-red);
+    stroke: #d32323;
 }
 
-.svg-wrapper .hex-circle-green {
-    fill: url(#gradient-green); /* Gradiente verde */
-    stroke: #397f39;; /* Borde verde sólido */
+.hex-circle-green {
+    fill: url(#gradient-green);
+    stroke: #397f39;
 }
 
-/*Para la tabla*/
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
+
 th, td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: center;
+    font-size: 1em;
+    color: #333;
 }
+
 th {
     background-color: #f7f7f7;
     font-weight: bold;
     color: #555;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+@media screen and (max-width: 768px) {
+    .content {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.6em;
+    }
+
+    h3, h4 {
+        font-size: 1.1em;
+    }
+
+    button {
+        width: 100%;
+    }
+
+    .svg-wrapper {
+        width: 80px;
+        height: 80px;
+    }
 }

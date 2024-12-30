@@ -6,15 +6,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh; /* Añadido para asegurar que la altura ocupe toda la pantalla */
 }
 
 .container {
-    width: 80%;
-    max-width: 800px;
+    width: 100%;
+    max-width: 1200px; /* Asegura que no se estire demasiado */
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin: 0 auto; /* Centra el contenedor */
 }
 
 h1 {
@@ -25,16 +27,37 @@ table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    table-layout: fixed; /* Fija el tamaño de las celdas */
 }
 
 th, td {
     padding: 10px;
     border: 1px solid #ddd;
     text-align: center;
+    word-wrap: break-word; /* Asegura que el contenido largo se ajuste */
 }
 
 th {
     background-color: #f7f7f7;
     font-weight: bold;
     color: #555;
+}
+
+/* Para hacerlo responsivo en pantallas pequeñas */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px; /* Añade márgenes horizontales para dispositivos pequeños */
+    }
+
+    table {
+        overflow-x: auto;
+        display: block; /* Permite desplazamiento horizontal */
+    }
+
+    th, td {
+        text-align: left; /* Alinea las celdas a la izquierda */
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 }
