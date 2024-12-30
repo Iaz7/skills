@@ -11,16 +11,24 @@
     },
     {
         "id": 2,
-        "name": "Learn to use wire strippers",
+        "text": "Learn to use wire strippers",
         "description": "Learn how to use wire strippers for electronics work",
         "difficulty": "Beginner",
+        "set": "electronics",
+        "tasks": [ "Task 1", "Task 2", "Task 3" ],
+        "resources": [ "Resource 1", "Resource 2"],
+        "score": 4,
         "icon": "/badges/wire-strippers.svg"
     },
     {
         "id": 3,
-        "name": "Complete an electronics kit",
+        "text": "Complete an electronics kit",
         "description": "Complete a full electronics kit to build a project",
         "difficulty": "Beginner",
+        "set": "electronics",
+        "tasks": [ "Task 1", "Task 2", "Task 3" ],
+        "resources": [ "Resource 1", "Resource 2"],
+        "score": 50,
         "icon": "/badges/electronics-kit.svg"
     },
     {

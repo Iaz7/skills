@@ -67,7 +67,7 @@
             const skillId = "<%= skill._id %>";
             const skillTree = "<%= skill.set %>";
             const userSkills = <%- JSON.stringify(userSkills) %>;
-            const user = "<%= user %>";
+            const user = "<%= user.id %>";
         </script>
 
         <h2>Resources</h2>
@@ -93,7 +93,7 @@
                 </thead>
                 <tbody>
                 <!-- Mostrar user skills que no estén ya aproobadas y que no hayan sido ya verificadas por el usuario-->
-                <% userSkills.filter(userSkill => !userSkill.approved && !userSkill.verifications.some(verification => verification.user.equals(user))).forEach(userSkill => { %>
+                <% userSkills.filter(userSkill => !userSkill.approved && !userSkill.verifications.some(verification => verification.user.equals(user.id))).forEach(userSkill => { %>
                     <tr>
                         <td><%= userSkill.user.username %></td>
                         <td><%= userSkill.evidence %></td>

@@ -56,19 +56,17 @@ const login = async (req, res) => {
     const user = await User.findOne({ username });
 
     if (!user){
-        req.flash('error_msg', 'Invalid username or password');
+        req.flash('error_msg', 'User not found');
         return res.redirect('/users/login');
     }
     if (!bcrypt.compareSync(password, user.password)){
         req.flash('error_msg', 'Invalid password');
-        console.log(req.flash('error_msg'));
         return res.redirect('/users/login');
     }
 
     req.session.user = { id: user._id, username: user.username, admin: user.admin };
     req.flash('success_msg', 'Login successfully!');
-    const redirectUrl = redirect || '/';
-    res.redirect(redirectUrl);
+    return res.redirect('/');
 }
 
 const logout = async (req, res) => {

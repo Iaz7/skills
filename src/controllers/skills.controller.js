@@ -39,7 +39,7 @@ const viewSkill = async (req, res) => {
             message: 'The skill you are looking for does not exist.',
             route: `/skills/${skillTree}/view/${skillID}`
         });
-        res.render('skills/view', { skill, userSkills, user: req.session.user.id });
+        res.render('skills/view', { skill, userSkills, user: req.session.user });
     } catch (err) {
         res.status(500).render('errors/500', { error: 'Failed to fetch skill', route: `/skills/${skillTree}/view/${skillID}` });
     };
