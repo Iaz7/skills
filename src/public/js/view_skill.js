@@ -12,6 +12,7 @@ window.onload = () => {
     });
 
     document.getElementById('submit').addEventListener('click', async function () {
+        event.preventDefault();
         const evidence = document.getElementById('textbox').value;
 
         try {
@@ -39,6 +40,8 @@ window.onload = () => {
             const result = await response.json();
             if (response.ok) {
                 alert(result.message); // Muestra el mensaje del servidor
+                confetti();
+                setTimeout(() => { window.location.reload(); }, 500);
             } else {
                 alert(result.error || 'Error submitting evidence');
             }
