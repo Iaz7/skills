@@ -58,7 +58,6 @@ const viewUsers = async (req, res) => {
 
 // Change user password
 const changePassword = async (req, res) => {
-    console.log(req.body);
     const { userID, newPassword } = req.body;
     if(newPassword.length <= 4){
         req.flash('error_msg', 'Password too short');

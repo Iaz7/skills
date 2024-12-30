@@ -5,8 +5,10 @@ const express = require('express');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const passport = require('./config/passport');
 const session = require('express-session');
 const flash = require('connect-flash');
+const MongoStore = require('connect-mongo');
 
 // Middleware
 app.set('view engine', 'ejs');
@@ -17,28 +19,32 @@ app.use(express.json());
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
-    saveUninitialized: true,
-   cookie: { secure: false } //Change to true if HTTPS
-}))
+    saveUninitialized: false,
+    store: MongoStore.create({ mongoUrl: process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/skills' }),
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24,
+        httpOnly: true,
+        secure: process.env.HTTPS_COOKIE.toLowerCase() === 'true'
+    }
+}));
+
+// Passport middleware (for OAuth)
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(flash());
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
-    console.log('Flash messages:', {
-        success_msg: res.locals.success_msg,
-        error_msg: res.locals.error_msg,
-        error: res.locals.error
-    });
     next();
 });
 
 app.get('/flash-multi-test', (req, res) => {
     req.flash('success_msg', 'First message');
     req.flash('success_msg', 'Second message');
-    const messages = req.flash('success_msg'); // Recupera y limpia todos los mensajes del tipo
-    res.send(messages); // Debería mostrar ["First message", "Second message"]
+    const messages = req.flash('success_msg');
+    res.send(messages);
 });
 
 
