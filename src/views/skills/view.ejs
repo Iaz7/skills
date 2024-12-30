@@ -10,6 +10,7 @@
 </head>
 <body>
     <%- include('../partials/username-display') %>
+    <%- include('../partials/messages') %>
 
     <div class="content">
         <h1>Skill: <%= skill.text %></h1>
@@ -94,7 +95,7 @@
                 </thead>
                 <tbody>
                 <!-- Mostrar user skills que no estén ya aproobadas y que no hayan sido ya verificadas por el usuario-->
-                <% userSkills.filter(userSkill => !userSkill.approved && !userSkill.verifications.some(verification => verification.user.equals(user.id))).forEach(userSkill => { %>
+                <% userSkills.filter(userSkill => !userSkill.approved && !userSkill.verified && !userSkill.verifications.some(verification => verification.user.equals(user.id))).forEach(userSkill => { %>
                     <tr>
                         <td><%= userSkill.user.username %></td>
                         <td><%= userSkill.evidence %></td>
