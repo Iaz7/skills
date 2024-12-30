@@ -11,7 +11,6 @@ const showRegisterForm = (req, res) => {
 
 
 const register = async (req, res) => {
-
     const { username, password, pass_confirmation } = req.body;
 
     if (!username || !password || !pass_confirmation){
@@ -41,7 +40,9 @@ const register = async (req, res) => {
 };
 
 const showLoginForm = (req, res) => {
-    res.render('auth/login', { redirect: req.query.redirect || '/' });
+    const redirect = req.query.redirect || '/';
+    req.session.redirect = redirect;
+    res.render('auth/login', { redirect });
 }
 
 
@@ -57,16 +58,16 @@ const login = async (req, res) => {
 
     if (!user){
         req.flash('error_msg', 'User not found');
-        return res.redirect('/users/login');
+        return res.redirect(`/users/login?redirect=${encodeURIComponent(redirect || '/')}`);
     }
     if (!bcrypt.compareSync(password, user.password)){
         req.flash('error_msg', 'Invalid password');
-        return res.redirect('/users/login');
+        return res.redirect(`/users/login?redirect=${encodeURIComponent(redirect || '/')}`);
     }
 
     req.session.user = { id: user._id, username: user.username, admin: user.admin };
     req.flash('success_msg', 'Login successfully!');
-    return res.redirect('/');
+    return res.redirect(redirect || '/');
 }
 
 const logout = async (req, res) => {
