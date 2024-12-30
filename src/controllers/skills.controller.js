@@ -59,6 +59,7 @@ const submitEvidence = async (req, res) => {
                 user: req.session.user.id,
                 skill: skillId,
                 completed: true,
+                completedAt: new Date(),
                 evidence
             });
             await newUserSkill.save();
@@ -111,8 +112,11 @@ const verifySkill = async (req, res) => {
             userSkill.verifications.push({
                 user: req.session.user.id,
                 approved: approved,
+                verifiedAt: new Date()
             });
-            if (req.session.user.admin || userSkill.verifications.filter(verification => verification.approved).length >= 3) userSkill.verified = true;
+            if (req.session.user.admin && approved || userSkill.verifications.filter(verification => verification.approved).length >= 3) {
+                userSkill.verified = true;
+            }
             await userSkill.save();
             res.redirect(`/skills/${skillTree}`);
         }
