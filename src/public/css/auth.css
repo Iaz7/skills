@@ -10,8 +10,8 @@ body {
     font-family: 'Rubik', sans-serif;
     font-size: 1rem;
     line-height: 1.6;
-    background-color: #121212;
-    color: #fff;
+    background-color: #f4f4f4;
+    color: #121212;
 }
 
 .container {
@@ -26,17 +26,21 @@ body {
     max-width: 400px;
     padding: 2rem;
     border-radius: 10px;
-    background-color: #333;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .card h1 {
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    color: #003eff;
 }
 
 .card p {
     margin-bottom: 1rem;
+    color: #444;
 }
 
 .form-control {
@@ -47,14 +51,23 @@ body {
     display: block;
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
+    color: #121212;
 }
 
 .form-control input {
     width: 100%;
     padding: 0.5rem;
     font-size: 1rem;
-    border: 1px solid #ddd;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #121212;
+}
+
+.form-control input:focus {
+    border-color: #003eff;
+    outline: none;
+    box-shadow: 0 0 5px #003eff;
 }
 
 .btn {
@@ -63,14 +76,14 @@ body {
     padding: 0.5rem;
     font-size: 1rem;
     color: #fff;
-    background-color: #007bff;
+    background-color: #003eff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #002cb8;
 }
 
 .github-login {

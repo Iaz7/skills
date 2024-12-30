@@ -11,20 +11,17 @@ body {
     margin: 0 auto;
 }
 
-h1 {
+h1, h2 {
     text-align: center;
+}
+
+h1 {
     font-size: 24px;
-    margin-bottom: 20px;
 }
 
-a {
-    color: #003eff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-a:hover {
-    text-decoration: underline;
+h2 {
+    font-size: 20px;
+    margin-top: 20px;
 }
 
 table {
@@ -43,41 +40,37 @@ table th {
     background-color: #f8f8f8;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+input[type="password"] {
+    width: 100%; /* Se asegura de ocupar todo el ancho de su celda */
+    max-width: 250px; /* Limita el ancho máximo en escritorio */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
-.btn {
-    padding: 8px 12px;
+button {
+    background-color: #007bff;
+    color: white;
     border: none;
+    padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 14px;
 }
 
-.btn_primary {
-    background-color: #007bff;
-    color: white;
-}
-
-.btn_danger {
-    background-color: #dc3545;
-    color: white;
-}
-
-.btn_primary:hover {
+button:hover {
     background-color: #0056b3;
 }
 
-.btn_danger:hover {
-    background-color: #a71d2a;
-}
-
-/* Estilos responsivos */
+/* Responsivo para pantallas pequeñas */
 @media (max-width: 768px) {
     h1 {
         font-size: 20px;
+    }
+
+    h2 {
+        font-size: 18px;
     }
 
     .container {
@@ -89,22 +82,6 @@ img {
         padding: 8px;
     }
 
-    table th:first-child,
-    table td:first-child {
-        display: none; /* Oculta la columna de imagen en pantallas pequeñas */
-    }
-
-    table {
-        font-size: 12px;
-    }
-
-    .btn {
-        padding: 6px 10px;
-        font-size: 12px;
-    }
-}
-
-@media (max-width: 480px) {
     table, thead, tbody, th, td, tr {
         display: block;
     }
@@ -128,10 +105,16 @@ img {
         content: attr(data-label);
         font-weight: bold;
         text-transform: capitalize;
-        min-width: 80px;
+        min-width: 100px;
     }
 
-    td img {
-        max-width: 50px;
+    input[type="password"] {
+        font-size: 12px;
+        max-width: 100%;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 6px 10px;
     }
 }

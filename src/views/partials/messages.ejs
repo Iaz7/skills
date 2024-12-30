@@ -18,7 +18,15 @@
         background-color: #f8d7da;
         border: 1px solid #f5c6cb;
     }
+
+    @media (max-width: 768px) {
+        .alert {
+            font-size: 12px;
+            padding: 8px 12px;
+        }
+    }
 </style>
+
 <div>
         <% if (success_msg && success_msg.length > 0) { %>
                 <div class="alert alert-success">
