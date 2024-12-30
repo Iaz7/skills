@@ -37,13 +37,10 @@ window.onload = () => {
                 body: JSON.stringify(data)
             });
 
-            const result = await response.json();
+            await response.json();
             if (response.ok) {
-                alert(result.message); // Muestra el mensaje del servidor
                 confetti();
-                setTimeout(() => { window.location.reload(); }, 500);
-            } else {
-                alert(result.error || 'Error submitting evidence');
+                setTimeout(() => { window.location.reload(); }, 500); //Tiempo para que se muestre el confeti antes de actualizar la página
             }
         } catch (err) {
             console.error(err);

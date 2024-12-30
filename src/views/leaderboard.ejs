@@ -11,7 +11,7 @@
 
     <%- include('partials/username-display') %>
 
-    <h1>Ranks</h1>
+    <h1>Leaderboard</h1>
     <% badges.forEach((badge, rankNumber) => { %>
         <h2><%= badge.name %></h2>
         <table>
@@ -25,7 +25,16 @@
             </tr>
             </thead>
             <tbody>
-            <% users.filter(user => user.score >= badge.bitpoints_min && user.score < badge.bitpoints_max).forEach(user => { %>
+            <%
+                const filteredUsers = users.filter(user => user.score >= badge.bitpoints_min && user.score < badge.bitpoints_max);
+
+            if (filteredUsers.length === 0) { %>
+                <tr>
+                    <td colspan="5" style="text-align: center;">No users in this rank</td>
+                </tr>
+            <% } else {
+            filteredUsers.forEach(user => {
+            %>
                 <tr>
                     <td><%= rankNumber %></td>
                     <td><%= user.username %></td>
@@ -35,9 +44,11 @@
                     </td>
                     <td><%= badge.bitpoints_min %> - <%= badge.bitpoints_max %></td>
                 </tr>
-            <% }); %>
+            <% });
+            } %>
             </tbody>
         </table>
+
     <% }); %>
 
     <h1>Ranks</h1>
