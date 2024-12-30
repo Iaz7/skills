@@ -33,7 +33,7 @@ const viewSkill = async (req, res) => {
 
     try {
         const skill = await Skill.findById(skillID);
-        const userSkills = await UserSkill.find().populate('user', 'username');
+        const userSkills = await UserSkill.find({skill: skillID}).populate('user', 'username');
         if (!skill) return res.status(404).render('errors/404', {
             title: 'Skill not found',
             message: 'The skill you are looking for does not exist.',
