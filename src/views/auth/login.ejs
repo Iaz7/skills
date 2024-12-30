@@ -24,6 +24,8 @@
 
                 <input type="hidden" name="redirect" value="<%= redirect %>">
                 <button class="btn" type="submit">Login</button>
+
+                <a href="/users/auth/github<%= (redirect) ? '?redirect=' + redirect : '' %>" class="btn github-login">Login with GitHub</a>
             </form>
             <p>Don't have an account? <a href="/users/register<%= (redirect) ? '?redirect=' + redirect : '' %>">Register now</a></p>
         </div>
